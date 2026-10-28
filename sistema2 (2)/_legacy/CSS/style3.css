@@ -1,0 +1,132 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+body{
+    background:#f1cbc5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.contenedor{
+    width:500px;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contenedor h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#ea9c90;
+    font-weight:bold;
+}
+
+.grupo{
+    margin-bottom:15px;
+}
+
+.grupo label{
+    display:block;
+    margin-bottom:5px;
+    color:#f2988a;
+    font-weight:bold;
+}
+
+.grupo input,
+.grupo textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+    transition:0.3s;
+}
+
+.grupo input:focus,
+.grupo textarea:focus{
+    border-color:#ea9c90;
+}
+
+textarea{
+    resize:none;
+    height:80px;
+}
+
+/* BUSQUEDA */
+.busqueda{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.busqueda input{
+    flex:1;
+}
+
+.btn-buscar{
+    background:#a8c5dd;
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.btn-buscar:hover{
+    background:#545b62;
+}
+
+/* BOTONES */
+.botones{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:20px;
+}
+
+.btn{
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    width:100px;
+}
+
+/* COLORES */
+.guardar{
+    background:#28a745;
+}
+
+.guardar:hover{
+    background:#218838;
+}
+
+.editar{
+    background:#007bff;
+}
+
+.editar:hover{
+    background:#0069d9;
+}
+
+.eliminar{
+    background:#dc3545;
+}
+
+.eliminar:hover{
+    background:#c82333;
+}

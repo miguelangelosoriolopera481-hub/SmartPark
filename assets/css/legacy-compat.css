@@ -1,0 +1,252 @@
+/* ============================================================
+   legacy-compat.css — Compatibilidad con clases antiguas
+   ============================================================
+   Se carga DESPUÉS de main.css. NO redefine nada de main.css.
+   Solo agrega clases que faltan y alias de variables viejas
+   para que los archivos migrados sigan viéndose perfectos.
+   ============================================================ */
+
+/* Alias de variables viejas → nuevas */
+:root {
+    --primary-cyan:   #06b6d4;
+    --primary-green:  #10b981;
+    --cyan-primary:   #06b6d4;
+    --green-accent:   #10b981;
+    --gradient-cyber: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+    --bg-dark:        var(--bg-base);
+    --bg-card-glow:   rgba(21, 32, 53, 0.9);
+    --border-hover:   #10b981;
+}
+
+/* ============ .pill-cyber ============ */
+.pill-cyber {
+    display: inline-block;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-cyber);
+    padding: 0.55rem 1.1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.pill-cyber strong { color: var(--verde-esmeralda); }
+
+/* ============ .stat-box + .stats-grid ============ */
+.stat-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-cyber);
+    border-radius: 14px;
+    padding: 1.5rem;
+    backdrop-filter: blur(16px);
+    transition: all 0.35s ease;
+}
+.stat-box:hover { border-color: var(--verde-esmeralda); box-shadow: 0 15px 40px rgba(16,185,129,0.15); }
+.stat-box h3 { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.6rem; }
+.stat-box .stat-number { font-size: 1.9rem; font-weight: 800; color: var(--text-main); }
+.stat-box .stat-number small { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
+.stat-box .stat-sub { display: block; margin-top: 0.4rem; font-size: 0.78rem; color: var(--text-muted); }
+.stat-box.primary { border-color: var(--cyan-electrico); }
+.stat-box.primary .stat-number { color: var(--cyan-electrico); }
+.stat-box.success { border-color: var(--verde-esmeralda); }
+.stat-box.success .stat-number { color: var(--verde-esmeralda); }
+.stat-box.warning { border-color: var(--warning); }
+.stat-box.warning .stat-number { color: var(--warning); }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* ============ .section-title ============ */
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============ .hero-section / landing ============ */
+.hero-section { padding: 4rem 1.5rem 3rem; text-align: center; }
+.hero-section h1 span {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.hero-section p.subtitle { color: var(--text-muted); max-width: 640px; margin: 0 auto 2rem; font-size: 1.05rem; }
+.hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; align-items: center; padding: 3rem 0; }
+.dispo-pills { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+/* ============ .disp-chip ============ */
+.disp-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border-cyber);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    min-width: 150px;
+    text-align: center;
+}
+.disp-chip .num { font-size: 1.8rem; font-weight: 700; }
+.disp-chip .label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.disp-chip.libres .num { color: var(--verde-esmeralda); }
+.disp-chip.ocupados .num { color: var(--danger); }
+.disp-chip.mantenimiento .num { color: var(--warning); }
+
+/* ============ .detail-row / .ticket-card (facturas) ============ */
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.92rem;
+}
+.detail-row span { color: var(--text-muted); }
+.detail-row strong { color: var(--text-main); }
+.detail-row.total-row strong.costo-text { color: var(--verde-esmeralda); font-size: 1.2rem; }
+
+.ticket-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-cyber);
+    border-radius: 16px;
+    max-width: 460px;
+    width: 100%;
+    margin: 3rem auto;
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(20px);
+    position: relative;
+    z-index: 1;
+}
+
+/* ============ .qr-block / .qr-caption ============ */
+.qr-block {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    margin: 1.5rem 0;
+    display: inline-block;
+}
+.qr-caption {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    margin-top: 0.4rem;
+}
+
+/* ============ .badge-cyber ============ */
+.badge-cyber {
+    display: inline-block;
+    background: rgba(16,185,129,0.12);
+    color: var(--verde-esmeralda);
+    border: 1px solid var(--verde-esmeralda);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.04em;
+}
+
+/* ============ .auth-footer ============ */
+.auth-footer { text-align: center; }
+.auth-footer a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+.auth-footer a:hover { color: var(--verde-esmeralda); }
+
+/* ============ .alert-box (salida) ============ */
+.alert-box {
+    padding: 1.3rem;
+    border-radius: 10px;
+    margin-top: 1.3rem;
+    border: 2px solid transparent;
+    text-align: center;
+}
+.alert-box h2 { font-size: 1rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.5rem; }
+.alert-box p { font-size: 0.82rem; line-height: 1.4; }
+.alert-robo { background: rgba(239,68,68,0.15); border-color: var(--danger); color: #fca5a5; }
+.alert-ok   { background: rgba(16,185,129,0.12); border-color: var(--verde-esmeralda); color: #6ee7b7; }
+.alert-warn { background: rgba(245,158,11,0.15); border-color: var(--warning); color: #fcd34d; }
+
+/* ============ .gate-card / .gate-input (salida) ============ */
+.gate-card { max-width: 500px; width: 100%; margin: 3rem auto; padding: 2rem; text-align: center; }
+.gate-card h1 { font-size: 1.15rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--text-main); letter-spacing: 0.03em; }
+.gate-card .subtext { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.gate-input {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-cyber);
+    padding: 0.9rem;
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+.gate-input:focus { border-color: var(--verde-esmeralda); }
+
+/* ============ .step-card / .tarifa-card (landing) ============ */
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.step-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-cyber);
+    border-radius: 14px;
+    padding: 1.6rem;
+    text-align: center;
+}
+.step-card .step-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-brand);
+    color: #030712;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.1rem;
+}
+.step-card h3 { color: var(--text-main); margin-bottom: 0.5rem; font-size: 1.05rem; }
+.step-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+.tarifas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.tarifa-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-cyber);
+    border-radius: 14px;
+    padding: 1.8rem;
+    text-align: center;
+}
+.tarifa-card .precio { font-size: 2.2rem; font-weight: 800; color: var(--verde-esmeralda); margin: 0.5rem 0; }
+.tarifa-card .precio small { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+
+/* ============ .plate-style (aseguramos) ============ */
+.plate-style {
+    background: rgba(16,185,129,0.08);
+    border: 1px solid var(--border-cyber);
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    color: var(--verde-esmeralda);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    display: inline-block;
+}
+
+/* ============ Responsive landing ============ */
+@media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+}
+
+/* ============ body.cyber-body (compat) ============ */
+body.cyber-body {
+    background: transparent;
+    color: var(--text-main);
+    font-family: var(--font-main);
+}

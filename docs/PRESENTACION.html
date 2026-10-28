@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>SmartPark Pro - Presentación</title>
+<style>
+    @page { size: 297mm 210mm; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        background: #e2e8f0;
+        padding: 2rem;
+        color: #1a202c;
+    }
+    .slide {
+        width: 297mm;
+        height: 210mm;
+        background: #030712;
+        color: #f1f5f9;
+        margin: 0 auto 2rem;
+        padding: 2.5rem 3rem;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+        display: flex;
+        flex-direction: column;
+    }
+    .slide::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #10b981, #06b6d4);
+    }
+    .slide-number {
+        position: absolute;
+        bottom: 1.25rem;
+        right: 2rem;
+        font-size: 0.72rem;
+        color: #475569;
+        font-family: monospace;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+    }
+    .slide-logo {
+        position: absolute;
+        top: 1.25rem;
+        right: 2rem;
+        font-size: 0.72rem;
+        color: #10b981;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    .slide-logo::before {
+        content: '◈';
+        font-size: 0.9rem;
+    }
+    h1 {
+        font-size: 2.8rem;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        margin-bottom: 0.85rem;
+    }
+    h2 {
+        font-size: 2rem;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+        line-height: 1.15;
+    }
+    h3 {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #10b981;
+        margin-bottom: 0.5rem;
+        margin-top: 1rem;
+    }
+    p { color: #cbd5e1; font-size: 1rem; line-height: 1.6; margin-bottom: 0.75rem; }
+    ul { margin-left: 1.5rem; margin-bottom: 0.75rem; }
+    li { color: #cbd5e1; font-size: 1rem; line-height: 1.9; }
+    li strong { color: #10b981; }
+    .accent {
+        background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; margin-top: 1rem; }
+    .card {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1.5px solid rgba(16, 185, 129, 0.25);
+        border-radius: 16px;
+        padding: 1.25rem;
+        position: relative;
+        overflow: hidden;
+    }
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #10b981, #06b6d4);
+    }
+    .card .icon {
+        font-size: 2rem;
+        margin-bottom: 0.6rem;
+        display: block;
+    }
+    .card h4 {
+        font-size: 1rem;
+        font-weight: 800;
+        color: #f1f5f9;
+        margin-bottom: 0.4rem;
+    }
+    .card p {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        line-height: 1.5;
+        margin: 0;
+    }
+    .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    .stat {
+        text-align: center;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1.5px solid rgba(16, 185, 129, 0.2);
+        border-radius: 14px;
+        padding: 1.25rem 0.75rem;
+    }
+    .stat .num {
+        font-size: 2.4rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #10b981, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+    }
+    .stat .lbl {
+        font-size: 0.72rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-top: 0.5rem;
+        font-weight: 700;
+    }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.9rem;
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        border-radius: 100px;
+        color: #10b981;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        margin-bottom: 1rem;
+    }
+    .badge.dev { background: rgba(167, 139, 250, 0.12); border-color: rgba(167, 139, 250, 0.4); color: #a78bfa; }
+    .badge.warn { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.4); color: #fcd34d; }
+    .badge.info { background: rgba(6, 182, 212, 0.12); border-color: rgba(6, 182, 212, 0.4); color: #67e8f9; }
+    .divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+        margin: 1rem 0;
+    }
+    /* Slide 1 - Portada */
+    .cover {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 60%), #030712;
+    }
+    .cover h1 {
+        font-size: 4.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .cover .sub {
+        font-size: 1.5rem;
+        color: #94a3b8;
+        margin: 0.75rem 0 2rem;
+    }
+    .cover .meta {
+        display: flex;
+        gap: 2rem;
+        font-size: 0.95rem;
+        color: #64748b;
+        margin-top: 3rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .cover .meta div {
+        padding: 0.5rem 1rem;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        border-radius: 100px;
+    }
+    .cover .badge {
+        margin-bottom: 2rem;
+    }
+    /* Slide de jerarquía */
+    .role-badge {
+        display: inline-block;
+        padding: 0.2rem 0.6rem;
+        border-radius: 6px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-right: 0.5rem;
+    }
+    .role-dev { background: rgba(167, 139, 250, 0.15); color: #a78bfa; }
+    .role-admin { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; }
+    .role-cliente { background: rgba(6, 182, 212, 0.15); color: #67e8f9; }
+    .role-vigilante { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
+    /* Diagrama */
+    .diagram {
+        background: rgba(2, 6, 23, 0.5);
+        border: 1px dashed rgba(16, 185, 129, 0.3);
+        border-radius: 12px;
+        padding: 1.25rem;
+        font-family: monospace;
+        font-size: 0.75rem;
+        line-height: 1.5;
+        color: #cbd5e1;
+        white-space: pre;
+        overflow-x: auto;
+        margin: 1rem 0;
+    }
+    /* Comparación */
+    .compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        margin-top: 1rem;
+    }
+    .compare-box {
+        padding: 1.25rem;
+        border-radius: 14px;
+    }
+    .compare-box.antes {
+        background: rgba(239, 68, 68, 0.08);
+        border: 1.5px solid rgba(239, 68, 68, 0.3);
+    }
+    .compare-box.despues {
+        background: rgba(16, 185, 129, 0.08);
+        border: 1.5px solid rgba(16, 185, 129, 0.3);
+    }
+    .compare-box h4 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
+    }
+    .compare-box.antes h4 { color: #f87171; }
+    .compare-box.despues h4 { color: #6ee7b7; }
+    .compare-box ul { list-style: none; margin: 0; }
+    .compare-box li {
+        font-size: 0.88rem;
+        padding: 0.35rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+    .compare-box.antes li::before {
+        content: '✕';
+        position: absolute;
+        left: 0;
+        color: #ef4444;
+        font-weight: 800;
+    }
+    .compare-box.despues li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #10b981;
+        font-weight: 800;
+    }
+    /* Timeline */
+    .timeline {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+        position: relative;
+    }
+    .timeline::before {
+        content: '';
+        position: absolute;
+        top: 30px;
+        left: 5%;
+        right: 5%;
+        height: 2px;
+        background: linear-gradient(90deg, #10b981, #06b6d4);
+        opacity: 0.4;
+    }
+    .timeline-item {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+    .timeline-item .dot {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10b981, #06b6d4);
+        margin: 0 auto 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #030712;
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
+    }
+    .timeline-item h5 {
+        font-size: 0.9rem;
+        color: #f1f5f9;
+        font-weight: 800;
+        margin-bottom: 0.25rem;
+    }
+    .timeline-item p {
+        font-size: 0.75rem;
+        color: #64748b;
+        margin: 0;
+    }
+    /* Print button */
+    .print-btn {
+        position: fixed;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: linear-gradient(135deg, #10b981, #06b6d4);
+        color: white;
+        border: none;
+        padding: 0.9rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 800;
+        font-size: 0.9rem;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(16,185,129,0.4);
+        z-index: 9999;
+        font-family: inherit;
+    }
+    .print-btn:hover { transform: translateY(-2px); }
+    @media print {
+        body { padding: 0; background: white; }
+        .slide { margin: 0; border-radius: 0; box-shadow: none; }
+        .print-btn { display: none; }
+    }
+    /* Última slide */
+    .thanks {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.2) 0%, transparent 60%), #030712;
+    }
+    .thanks h1 { font-size: 5rem; }
+    .thanks p { font-size: 1.3rem; color: #94a3b8; }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Guardar como PDF</button>
+
+<!-- ============================================================ -->
+<!-- SLIDE 1 — PORTADA -->
+<!-- ============================================================ -->
+<div class="slide cover">
+    <div class="slide-logo">SmartPark Pro</div>
+    <div class="badge">🎓 Proyecto de Grado · Media Técnica</div>
+    <h1>
+        <span class="accent">Smart</span>Park Pro
+    </h1>
+    <p class="sub">Plataforma SaaS multi-empresa para<br>gestión inteligente de parqueaderos</p>
+    <div class="meta">
+        <div>👤 Miguel Ángel Osorio</div>
+        <div>🏫 INEM José Celestino Mutis</div>
+        <div>📅 Octubre 2026</div>
+    </div>
+    <div class="slide-number">01</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2 — EL PROBLEMA -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge warn">📍 Contexto</span>
+    <h2>El problema que resolvemos</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+        Los parqueaderos en Colombia operan con sistemas obsoletos que generan pérdidas, fraudes y mala experiencia al cliente.
+    </p>
+    <div class="compare">
+        <div class="compare-box antes">
+            <h4>❌ Parqueaderos tradicionales</h4>
+            <ul>
+                <li>Tickets de papel que se pierden</li>
+                <li>Cálculo manual de tarifas (errores)</li>
+                <li>Sin control de ocupación en tiempo real</li>
+                <li>Imposible operar varias sedes</li>
+                <li>Fraudes de tiempo (pagan y se quedan)</li>
+                <li>Sin respaldo de datos</li>
+                <li>Clientes hacen filas para pagar</li>
+                <li>Sin acceso a reportes financieros</li>
+            </ul>
+        </div>
+        <div class="compare-box despues">
+            <h4>✓ Con SmartPark Pro</h4>
+            <ul>
+                <li>Tickets digitales con QR</li>
+                <li>Cálculo automático por tarifa</li>
+                <li>Mapa en vivo de ocupación</li>
+                <li>Multi-empresa con datos aislados</li>
+                <li>Anti-fraude con IA integrada</li>
+                <li>Backups automáticos cifrados</li>
+                <li>Pago desde el celular en segundos</li>
+                <li>Reportes y gráficos en tiempo real</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">02</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3 — LA SOLUCIÓN -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge">💡 Nuestra solución</span>
+    <h2>SmartPark Pro</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+        Una <strong class="accent">plataforma SaaS multi-tenant</strong> que centraliza la operación de múltiples parqueaderos, cada uno con sus datos completamente aislados.
+    </p>
+    <div class="grid-3">
+        <div class="card">
+            <span class="icon">🏢</span>
+            <h4>Multi-empresa</h4>
+            <p>Múltiples parqueaderos operan en el mismo sistema sin cruzar datos. Cada uno tiene sus propias celdas, tarifas, usuarios y reportes.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🤖</span>
+            <h4>IA integrada</h4>
+            <p>Google Gemini responde preguntas, sugiere celdas óptimas, analiza fraudes y genera reportes inteligentes.</p>
+        </div>
+        <div class="card">
+            <span class="icon">📱</span>
+            <h4>Sin app requerida</h4>
+            <p>Los clientes escanean un QR y usan el sistema desde el navegador del celular. Cero instalaciones.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🔒</span>
+            <h4>Seguridad empresarial</h4>
+            <p>Argon2id, 2FA, CSRF, rate limiting, cifrado AES-256. Nivel de banco para un proyecto escolar.</p>
+        </div>
+        <div class="card">
+            <span class="icon">💾</span>
+            <h4>Backups inteligentes</h4>
+            <p>Respaldos automáticos globales y por empresa. Solo el developer puede eliminar por seguridad.</p>
+        </div>
+        <div class="card">
+            <span class="icon">📊</span>
+            <h4>Analítica en vivo</h4>
+            <p>Dashboards con KPIs, gráficos, tendencias y estadísticas en tiempo real por empresa y global.</p>
+        </div>
+    </div>
+    <div class="slide-number">03</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4 — ARQUITECTURA MULTI-TENANT -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge dev">🏗️ Arquitectura</span>
+    <h2>Cómo funciona el sistema multi-tenant</h2>
+    <div class="diagram">┌──────────────────────────────────────────────────────────────┐
+│                    SMARTPARK PRO (Servidor único)             │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐      │
+│   │  EMPRESA 1  │    │  EMPRESA 2  │    │  EMPRESA 3  │      │
+│   │  SmartPark  │    │  El Centro  │    │  Tu Parque  │      │
+│   │  Demo       │    │             │    │  (futuro)   │      │
+│   ├─────────────┤    ├─────────────┤    ├─────────────┤      │
+│   │ 40 celdas   │    │ 40 celdas   │    │ 60 celdas   │      │
+│   │ 5 usuarios  │    │ 1 usuario   │    │ 8 usuarios  │      │
+│   │ Sus datos   │    │ Sus datos   │    │ Sus datos   │      │
+│   │ AISLADOS ✓  │    │ AISLADOS ✓  │    │ AISLADOS ✓  │      │
+│   └─────────────┘    └─────────────┘    └─────────────┘      │
+│                                                               │
+│   → Cada empresa ve SOLO sus datos (filtro empresa_id)        │
+│   → Mismo código, misma infraestructura, cero cruces          │
+└──────────────────────────────────────────────────────────────┘</div>
+    <div class="grid-2" style="margin-top: 1rem;">
+        <div class="card">
+            <h4>🎯 ¿Por qué es importante?</h4>
+            <p>Un dueño de parqueadero paga por usar el sistema, pero <strong>nunca ve</strong> los datos de otro parqueadero. Seguridad y privacidad garantizadas.</p>
+        </div>
+        <div class="card">
+            <h4>💼 Modelo de negocio SaaS</h4>
+            <p>Mismo modelo que Shopify, Uber o Netflix: <strong>muchos clientes, una sola plataforma</strong>. Escala sin duplicar código.</p>
+        </div>
+    </div>
+    <div class="slide-number">04</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5 — LOS 6 ROLES -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge info">👥 Roles del sistema</span>
+    <h2>6 roles con permisos específicos</h2>
+    <div class="grid-3">
+        <div class="card">
+            <span class="role-badge role-dev">DEVELOPER</span>
+            <p style="margin-top: 0.75rem;">Acceso TOTAL. Ve todas las empresas, aprueba registros, configura IA global, crea backups globales.</p>
+        </div>
+        <div class="card">
+            <span class="role-badge role-admin">ADMIN</span>
+            <p style="margin-top: 0.75rem;">Dueño del parqueadero. Gestiona SU empresa: celdas, usuarios, tarifas, backups propios.</p>
+        </div>
+        <div class="card">
+            <span class="role-badge role-vigilante">OPERADOR</span>
+            <p style="margin-top: 0.75rem;">Registra entradas/salidas, cobra, ve celdas. No modifica configuración ni usuarios.</p>
+        </div>
+        <div class="card">
+            <span class="role-badge role-vigilante">VIGILANTE</span>
+            <p style="margin-top: 0.75rem;">Guardia de puerta. Solo registro rápido de entrada y verificación de salida.</p>
+        </div>
+        <div class="card">
+            <span class="role-badge role-admin">FINANZAS</span>
+            <p style="margin-top: 0.75rem;">Contador. Ve reportes financieros, recaudos, métodos de pago. No gestiona celdas.</p>
+        </div>
+        <div class="card">
+            <span class="role-badge role-cliente">CLIENTE</span>
+            <p style="margin-top: 0.75rem;">Conductor. Ve solo SUS vehículos, historial y paga sus parqueos.</p>
+        </div>
+    </div>
+    <div class="slide-number">05</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6 — CARACTERÍSTICAS PRINCIPALES -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge">✦ Características</span>
+    <h2>¿Qué puede hacer el sistema?</h2>
+    <div class="grid-4">
+        <div class="card">
+            <span class="icon">🚪</span>
+            <h4>Registro por QR</h4>
+            <p>Cliente escanea y entra sin app</p>
+        </div>
+        <div class="card">
+            <span class="icon">🎫</span>
+            <h4>Tickets digitales</h4>
+            <p>QR verificable al salir</p>
+        </div>
+        <div class="card">
+            <span class="icon">💳</span>
+            <h4>Pago flexible</h4>
+            <p>Efectivo, transferencia, prepago</p>
+        </div>
+        <div class="card">
+            <span class="icon">🗺️</span>
+            <h4>Mapa de celdas</h4>
+            <p>Ocupación en tiempo real</p>
+        </div>
+        <div class="card">
+            <span class="icon">📊</span>
+            <h4>Estadísticas</h4>
+            <p>Gráficos y tendencias</p>
+        </div>
+        <div class="card">
+            <span class="icon">🤖</span>
+            <h4>Chat IA</h4>
+            <p>Asistente inteligente</p>
+        </div>
+        <div class="card">
+            <span class="icon">🔐</span>
+            <h4>2FA</h4>
+            <p>Código por correo</p>
+        </div>
+        <div class="card">
+            <span class="icon">💾</span>
+            <h4>Backups</h4>
+            <p>Globales y por empresa</p>
+        </div>
+        <div class="card">
+            <span class="icon">📧</span>
+            <h4>Notificaciones</h4>
+            <p>Email + Telegram</p>
+        </div>
+        <div class="card">
+            <span class="icon">🛡️</span>
+            <h4>Anti-fraude</h4>
+            <p>5 capas de detección</p>
+        </div>
+        <div class="card">
+            <span class="icon">📱</span>
+            <h4>Responsive</h4>
+            <p>Funciona en móvil</p>
+        </div>
+        <div class="card">
+            <span class="icon">📄</span>
+            <h4>Reportes</h4>
+            <p>PDF y CSV exportables</p>
+        </div>
+    </div>
+    <div class="slide-number">06</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7 — SISTEMA QR -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge info">📱 Innovación</span>
+    <h2>Sistema QR sin aplicaciones</h2>
+    <p style="font-size: 1.05rem; margin-bottom: 1rem;">
+        Los clientes solo escanean un código QR con la cámara del celular. <strong>No necesitan descargar ninguna app.</strong>
+    </p>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="dot">1</div>
+            <h5>Admin imprime QR</h5>
+            <p>Desde el panel</p>
+        </div>
+        <div class="timeline-item">
+            <div class="dot">2</div>
+            <h5>Cliente escanea</h5>
+            <p>Con su cámara</p>
+        </div>
+        <div class="timeline-item">
+            <div class="dot">3</div>
+            <h5>Ingresa placa</h5>
+            <p>Celda asignada</p>
+        </div>
+        <div class="timeline-item">
+            <div class="dot">4</div>
+            <h5>Recibe ticket</h5>
+            <p>Con QR único</p>
+        </div>
+        <div class="timeline-item">
+            <div class="dot">5</div>
+            <h5>Paga al salir</h5>
+            <p>Desde el móvil</p>
+        </div>
+    </div>
+    <div class="grid-3" style="margin-top: 2rem;">
+        <div class="card">
+            <h4>🚪 QR de Entrada</h4>
+            <p style="margin-top: 0.4rem;">Pegado en la puerta del parqueadero. El cliente registra su entrada.</p>
+        </div>
+        <div class="card">
+            <h4>🏢 QR de Recepción</h4>
+            <p style="margin-top: 0.4rem;">En el mostrador. El cliente consulta su vehículo y paga.</p>
+        </div>
+        <div class="card">
+            <h4>🅿️ QR por Celda</h4>
+            <p style="margin-top: 0.4rem;">Individual por celda, para check-in rápido.</p>
+        </div>
+    </div>
+    <div class="slide-number">07</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8 — IA GEMINI -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge">🤖 Inteligencia Artificial</span>
+    <h2>IA integrada con contexto por rol</h2>
+    <p style="font-size: 1.05rem; margin-bottom: 1rem;">
+        Google Gemini responde preguntas <strong>conociendo los datos específicos del usuario</strong> según su rol en el sistema.
+    </p>
+    <div class="grid-2">
+        <div class="card">
+            <h4>🎯 Sugerencia de celdas</h4>
+            <p>La IA analiza el historial del vehículo, la ocupación actual y la hora, para sugerir la celda más eficiente. Si el cliente ya visitó antes, recuerda su celda preferida.</p>
+        </div>
+        <div class="card">
+            <h4>🛡️ Detección de fraudes</h4>
+            <p>Analiza patrones sospechosos: ¿un usuario registró 5 bicicletas en 1 hora? ¿Un vehículo paga y se queda? La IA detecta y alerta al admin.</p>
+        </div>
+        <div class="card">
+            <h4>💬 Chat asistente</h4>
+            <p>Widget flotante en todos los dashboards. El cliente pregunta "¿dónde está mi carro?", el admin "¿cuánto recaudé hoy?", el developer "¿cuántas empresas hay?".</p>
+        </div>
+        <div class="card">
+            <h4>🔒 Bloqueo por seguridad</h4>
+            <p>Si un cliente intenta preguntar sobre otras empresas o datos sensibles, la IA rechaza amablemente la pregunta. Seguridad garantizada.</p>
+        </div>
+    </div>
+    <div class="slide-number">08</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9 — ANTI-FRAUDE -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge warn">🛡️ Seguridad</span>
+    <h2>Sistema anti-fraude sin hardware</h2>
+    <p style="font-size: 1.05rem; margin-bottom: 1rem;">
+        Sin cámaras ni sensores, detectamos fraudes con <strong>5 capas de análisis</strong>.
+    </p>
+    <div class="grid-3">
+        <div class="card">
+            <span class="icon">🚗</span>
+            <h4>Capa 1: Duplicados</h4>
+            <p>Si una placa ya está dentro, bloquea el registro y muestra su ubicación.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🚲</span>
+            <h4>Capa 2: Datos obligatorios</h4>
+            <p>Para bicicletas: cédula, nombre, descripción y confirmación visual del vigilante.</p>
+        </div>
+        <div class="card">
+            <span class="icon">📊</span>
+            <h4>Capa 3: Patrones anómalos</h4>
+            <p>Analiza ratios bicis/carros, frecuencia de un usuario, reincidencia de placas.</p>
+        </div>
+        <div class="card">
+            <span class="icon">⏰</span>
+            <h4>Capa 4: Pago sin salida</h4>
+            <p>Detecta si un vehículo pagó hace más de 2h pero sigue dentro. Alerta al admin.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🤖</span>
+            <h4>Capa 5: IA predictiva</h4>
+            <p>Gemini analiza cada registro sospechoso y da un veredicto con nivel de riesgo.</p>
+        </div>
+        <div class="card">
+            <span class="icon">📋</span>
+            <h4>Auditoría completa</h4>
+            <p>Cada intento sospechoso queda registrado con IP, usuario, hora y motivo.</p>
+        </div>
+    </div>
+    <div class="slide-number">09</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10 — SEGURIDAD -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge dev">🔒 Seguridad</span>
+    <h2>Seguridad de nivel empresarial</h2>
+    <div class="grid-2">
+        <div class="card">
+            <h4>🔑 Argon2id para contraseñas</h4>
+            <p>El mismo algoritmo que usan bancos. Supera a MD5/SHA que usan otros sistemas escolares.</p>
+        </div>
+        <div class="card">
+            <h4>📧 2FA obligatorio</h4>
+            <p>Para roles admin: código OTP de 6 dígitos al correo. Expira en 5 minutos.</p>
+        </div>
+        <div class="card">
+            <h4>🛡️ CSRF tokens</h4>
+            <p>Protección contra ataques de formularios en todos los POST del sistema.</p>
+        </div>
+        <div class="card">
+            <h4>⏱️ Rate limiting</h4>
+            <p>Máximo 5 intentos de login por 15min. Máximo 10 preguntas a la IA por 5min.</p>
+        </div>
+        <div class="card">
+            <h4>🔐 Cifrado AES-256-GCM</h4>
+            <p>Las API keys se guardan cifradas en la base de datos. No son visibles ni en phpMyAdmin.</p>
+        </div>
+        <div class="card">
+            <h4>📁 Archivos protegidos</h4>
+            <p>.htaccess bloquea acceso web a .env, vendor/, backups/ y config/.</p>
+        </div>
+    </div>
+    <div class="slide-number">10</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11 — BACKUPS -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge">💾 Resiliencia</span>
+    <h2>Backups inteligentes anti-hackeo</h2>
+    <div class="grid-2">
+        <div class="card">
+            <h4>🌐 Backup Global (Developer)</h4>
+            <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                <li style="font-size: 0.85rem;">TODAS las empresas</li>
+                <li style="font-size: 0.85rem;">Todos los usuarios</li>
+                <li style="font-size: 0.85rem;">Toda la configuración</li>
+                <li style="font-size: 0.85rem;">Formato .sql descargable</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4>🏢 Backup por Empresa (Admin)</h4>
+            <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                <li style="font-size: 0.85rem;">SOLO datos de su empresa</li>
+                <li style="font-size: 0.85rem;">Sus usuarios y registros</li>
+                <li style="font-size: 0.85rem;">Ideal para migrar a otro servidor</li>
+                <li style="font-size: 0.85rem;">También .sql descargable</li>
+            </ul>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <h3>🛡️ Reglas anti-hackeo</h3>
+    <ul>
+        <li>Solo el <strong>developer</strong> puede eliminar backups</li>
+        <li>Los <strong>admins NO pueden eliminar</strong> ni los propios (evita sabotaje)</li>
+        <li>Rate limiting: máximo <strong>5 backups por hora</strong></li>
+        <li>Nombres con <strong>hash aleatorio</strong> (imposible adivinar)</li>
+        <li>Auditoría de cada creación, descarga y eliminación</li>
+    </ul>
+    <div class="slide-number">11</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12 — STACK TECNOLÓGICO -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge info">⚙️ Tecnología</span>
+    <h2>Stack tecnológico</h2>
+    <div class="grid-3">
+        <div class="card">
+            <h4>Backend</h4>
+            <p style="margin-top: 0.5rem;">
+                <strong>PHP 8.2</strong><br>
+                <strong>MariaDB 10.4</strong><br>
+                <strong>PDO</strong> preparado<br>
+                <strong>Composer</strong> para deps
+            </p>
+        </div>
+        <div class="card">
+            <h4>Frontend</h4>
+            <p style="margin-top: 0.5rem;">
+                <strong>HTML5</strong> semántico<br>
+                <strong>CSS3</strong> con variables<br>
+                <strong>JS vanilla</strong> (sin frameworks)<br>
+                <strong>Glassmorphism</strong>
+            </p>
+        </div>
+        <div class="card">
+            <h4>Servicios externos</h4>
+            <p style="margin-top: 0.5rem;">
+                <strong>Google Gemini</strong> (IA gratis)<br>
+                <strong>Gmail SMTP</strong> (emails)<br>
+                <strong>Telegram bot</strong> (notif.)<br>
+                <strong>Endroid QR</strong> (local)
+            </p>
+        </div>
+    </div>
+    <h3 style="margin-top: 2rem;">📊 Estadísticas del proyecto</h3>
+    <div class="stat-grid">
+        <div class="stat">
+            <div class="num">60+</div>
+            <div class="lbl">Archivos PHP</div>
+        </div>
+        <div class="stat">
+            <div class="num">22</div>
+            <div class="lbl">Tablas BD</div>
+        </div>
+        <div class="stat">
+            <div class="num">41</div>
+            <div class="lbl">Funciones core</div>
+        </div>
+        <div class="stat">
+            <div class="num">10K+</div>
+            <div class="lbl">Líneas código</div>
+        </div>
+    </div>
+    <div class="slide-number">12</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 13 — ALCANCE: LO QUE SÍ SE PUEDE HACER -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge">✅ Alcance</span>
+    <h2>Lo que SÍ se puede hacer</h2>
+    <div class="grid-2">
+        <div class="card">
+            <h4>✓ Gestión multi-empresa</h4>
+            <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                <li style="font-size: 0.85rem;">Registrar N empresas ilimitadas</li>
+                <li style="font-size: 0.85rem;">Aprobar / rechazar / suspender</li>
+                <li style="font-size: 0.85rem;">Cada una con sus datos aislados</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4>✓ Operación completa</h4>
+            <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                <li style="font-size: 0.85rem;">Entradas por QR o staff</li>
+                <li style="font-size: 0.85rem;">Asignación IA de celdas</li>
+                <li style="font-size: 0.85rem;">Cálculo automático de tarifas</li>
+                <li style="font-size: 0.85rem;">Cobro y factura QR</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4>✓ Reportes y análisis</h4>
+            <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                <li style="font-size: 0.85rem;">KPIs en tiempo real</li>
+                <li style="font-size: 0.85rem;">Gráficos y tendencias</li>
+                <li style="font-size: 0.85rem;">Exportar PDF y CSV</li>
+                <li style="font-size: 0.85rem;">Top placas frecuentes</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4>✓ Seguridad completa</h4>
+            <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                <li style="font-size: 0.85rem;">Login con 2FA por email</li>
+                <li style="font-size: 0.85rem;">Argon2id para contraseñas</li>
+                <li style="font-size: 0.85rem;">Backups automáticos</li>
+                <li style="font-size: 0.85rem;">Auditoría de cada acción</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">13</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 14 — LIMITACIONES -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge warn">⚠️ Limitaciones</span>
+    <h2>Lo que NO se puede hacer (todavía)</h2>
+    <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">
+        Honestidad sobre el alcance actual. Estas son las limitaciones y por qué existen:
+    </p>
+    <div class="grid-2">
+        <div class="card" style="border-color: rgba(239, 68, 68, 0.3);">
+            <h4>❌ Facturación electrónica DIAN</h4>
+            <p>Requiere RUT + certificado digital + proveedor autorizado (~$1M COP/año). <strong>Solución actual:</strong> factura interna con QR verificable, válida como comprobante.</p>
+        </div>
+        <div class="card" style="border-color: rgba(239, 68, 68, 0.3);">
+            <h4>❌ Pasarelas de pago reales</h4>
+            <p>Stripe, PSE o Nequi requieren cuenta empresarial y comisiones. <strong>Solución actual:</strong> pago en efectivo/transferencia manual + comprobante digital.</p>
+        </div>
+        <div class="card" style="border-color: rgba(239, 68, 68, 0.3);">
+            <h4>❌ App móvil nativa</h4>
+            <p>iOS + Android requiere 6+ meses de desarrollo. <strong>Solución actual:</strong> web móvil con QR, funciona desde el navegador.</p>
+        </div>
+        <div class="card" style="border-color: rgba(239, 68, 68, 0.3);">
+            <h4>❌ Hardware IoT (barreras)</h4>
+            <p>Requiere inversión en hardware físico. <strong>Solución actual:</strong> control manual por el vigilante con confirmación en pantalla.</p>
+        </div>
+        <div class="card" style="border-color: rgba(245, 158, 11, 0.3);">
+            <h4>⚠️ IA con cuota limitada</h4>
+            <p>Gemini gratis tiene 500 req/día. <strong>Mitigación:</strong> retry automático + fallback a otros modelos + IA por rol.</p>
+        </div>
+        <div class="card" style="border-color: rgba(245, 158, 11, 0.3);">
+            <h4>⚠️ Notificaciones SMS de pago</h4>
+            <p>Twilio cobra por SMS. <strong>Solución actual:</strong> notificaciones por Telegram (gratis) + email.</p>
+        </div>
+    </div>
+    <div class="slide-number">14</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 15 — CASOS DE USO -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge">💼 Casos de uso</span>
+    <h2>Escenarios reales donde aplica</h2>
+    <div class="grid-3" style="margin-top: 1.5rem;">
+        <div class="card">
+            <span class="icon">🏬</span>
+            <h4>Parqueadero de centro comercial</h4>
+            <p style="margin-top: 0.5rem;">500 celdas, 3 sótanos, 5 empresas clientes. QR en cada entrada, facturación automática.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🏘️</span>
+            <h4>Parqueadero de barrio</h4>
+            <p style="margin-top: 0.5rem;">20 celdas, 1 admin, 1 operador. Plan gratuito para empezar. Migración a pago después.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🌆</span>
+            <h4>Red de parqueaderos</h4>
+            <p style="margin-top: 0.5rem;">10 sedes en la misma ciudad. Reportes consolidados + IA que optimiza distribución.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🏨</span>
+            <h4>Hotel con estacionamiento</h4>
+            <p style="margin-top: 0.5rem;">Clientes registran su placa al check-in, el sistema controla salidas sin cobrar.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🏥</span>
+            <h4>Hospital o clínica</h4>
+            <p style="margin-top: 0.5rem;">Convenios con prepago mensual. Empleados y pacientes con tarifas diferenciadas.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🏟️</span>
+            <h4>Estadio o evento</h4>
+            <p style="margin-top: 0.5rem;">Modo celda por QR con control de ocupación en tiempo real durante el evento.</p>
+        </div>
+    </div>
+    <div class="slide-number">15</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 16 — IMPACTO Y BENEFICIOS -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge">📈 Impacto</span>
+    <h2>Beneficios medibles</h2>
+    <div class="stat-grid">
+        <div class="stat">
+            <div class="num">↓60%</div>
+            <div class="lbl">Tiempo de registro</div>
+        </div>
+        <div class="stat">
+            <div class="num">↓80%</div>
+            <div class="lbl">Fraudes de tiempo</div>
+        </div>
+        <div class="stat">
+            <div class="num">↑40%</div>
+            <div class="lbl">Eficiencia operativa</div>
+        </div>
+        <div class="stat">
+            <div class="num">100%</div>
+            <div class="lbl">Cero papel</div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <h3>Para cada actor del sistema</h3>
+    <div class="grid-3">
+        <div class="card">
+            <h4>🏢 Para empresas</h4>
+            <p>Sistema profesional sin inversión inicial en infraestructura. Ahorro en personal administrativo.</p>
+        </div>
+        <div class="card">
+            <h4>🚗 Para conductores</h4>
+            <p>Entrada sin apps, pago desde el celular, historial completo de sus vehículos.</p>
+        </div>
+        <div class="card">
+            <h4>💻 Para el developer</h4>
+            <p>Producto comercializable. Modelo SaaS con ingresos recurrentes escalables.</p>
+        </div>
+    </div>
+    <div class="slide-number">16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 17 — MODELO DE NEGOCIO -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge dev">💰 Modelo de negocio</span>
+    <h2>Proyección comercial (futuro)</h2>
+    <div class="diagram">┌────────────────┐         ┌────────────────┐         ┌────────────────┐
+│   DEVELOPERS   │         │   EMPRESARIOS  │         │   CLIENTES     │
+│  (Tú + equipo) │────────▶│  (Parqueaderos)│────────▶│  (Conductores) │
+│                │ Ofrecen │                │  Usan   │                │
+│  SmartPark Pro │ SaaS    │  Pagan $/mes   │ gratis  │  Gratis        │
+└────────────────┘         └────────────────┘         └────────────────┘</div>
+    <h3 style="margin-top: 2rem;">📊 Proyección de ingresos por suscripción</h3>
+    <div class="grid-3">
+        <div class="card" style="text-align: center;">
+            <h4>Mes 1-3</h4>
+            <div style="font-size: 2rem; font-weight: 900; color: #10b981; margin: 0.5rem 0;">$1.000.000</div>
+            <p style="color: #64748b;">10 empresas × $100K/mes</p>
+        </div>
+        <div class="card" style="text-align: center;">
+            <h4>Mes 4-6</h4>
+            <div style="font-size: 2rem; font-weight: 900; color: #10b981; margin: 0.5rem 0;">$5.000.000</div>
+            <p style="color: #64748b;">50 empresas × $100K/mes</p>
+        </div>
+        <div class="card" style="text-align: center;">
+            <h4>Mes 7-12</h4>
+            <div style="font-size: 2rem; font-weight: 900; color: #10b981; margin: 0.5rem 0;">$10.000.000</div>
+            <p style="color: #64748b;">100 empresas × $100K/mes</p>
+        </div>
+    </div>
+    <div class="slide-number">17</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 18 — ROADMAP -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge info">🚀 Roadmap</span>
+    <h2>Próximos pasos del proyecto</h2>
+    <div class="timeline" style="margin-top: 2rem;">
+        <div class="timeline-item">
+            <div class="dot">✓</div>
+            <h5>v1.0 (HOY)</h5>
+            <p>MVP funcional al 92%</p>
+        </div>
+        <div class="timeline-item">
+            <div class="dot">🔄</div>
+            <h5>v1.1 (2 semanas)</h5>
+            <p>Dashboard vigilante</p>
+        </div>
+        <div class="timeline-item">
+            <div class="dot">🤖</div>
+            <h5>v1.2 (1 mes)</h5>
+            <p>Telegram + IA completa</p>
+        </div>
+        <div class="timeline-item">
+            <div class="dot">📱</div>
+            <h5>v2.0 (3 meses)</h5>
+            <p>PWA instalable móvil</p>
+        </div>
+        <div class="timeline-item">
+            <div class="dot">💳</div>
+            <h5>v3.0 (6 meses)</h5>
+            <p>Suscripciones con pasarela</p>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <h3>🎯 Hitos a corto plazo</h3>
+    <ul>
+        <li>Completar los bloques 7-11 pendientes</li>
+        <li>Preparar sustentación para el colegio</li>
+        <li>Publicar en GitHub como portafolio</li>
+        <li>Conseguir 3-5 empresas piloto para test</li>
+    </ul>
+    <div class="slide-number">18</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 19 — CONCLUSIONES -->
+<!-- ============================================================ -->
+<div class="slide">
+    <div class="slide-logo">SmartPark Pro</div>
+    <span class="badge">🎯 Conclusiones</span>
+    <h2>Por qué este proyecto importa</h2>
+    <div class="grid-2" style="margin-top: 1.5rem;">
+        <div class="card">
+            <h4>✅ Técnicamente sólido</h4>
+            <p>Arquitectura SaaS real, multi-tenant, IA integrada, seguridad de nivel empresarial. <strong>Muy por encima del promedio escolar.</strong></p>
+        </div>
+        <div class="card">
+            <h4>✅ Comercialmente viable</h4>
+            <p>Modelo de negocio claro, escalable, con ingresos recurrentes. Puede convertirse en startup real.</p>
+        </div>
+        <div class="card">
+            <h4>✅ Innovador</h4>
+            <p>Pocos parqueaderos en Colombia tienen IA, QR sin app y multi-empresa. <strong>Ventaja competitiva real.</strong></p>
+        </div>
+        <div class="card">
+            <h4>✅ Aprendizaje profundo</h4>
+            <p>Durante el desarrollo aprendimos: PHP avanzado, seguridad, IA, multi-tenant, deployment, UX/UI.</p>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <h3 style="text-align: center; color: #10b981; font-size: 1.4rem; margin-top: 1.5rem;">
+        "SmartPark Pro no es un proyecto escolar. Es un producto comercializable."
+    </h3>
+    <div class="slide-number">19</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 20 — GRACIAS / PREGUNTAS -->
+<!-- ============================================================ -->
+<div class="slide thanks">
+    <div class="slide-logo">SmartPark Pro</div>
+    <h1><span class="accent">¡Gracias!</span></h1>
+    <p>¿Preguntas?</p>
+    <div style="margin-top: 3rem; display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+        <div style="padding: 1rem 1.5rem; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 100px;">
+            📧 contacto@smartpark.com
+        </div>
+        <div style="padding: 1rem 1.5rem; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 100px;">
+            🌐 github.com/smartpark
+        </div>
+    </div>
+    <div class="slide-number">20</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+.env
+vendor/
+backups/
+_tests/
+*.sql
+*.log
+*.bak

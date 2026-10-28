@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Manual SmartPark Pro - Equipo</title>
+<style>
+    @page { size: A4; margin: 2cm 1.5cm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'Segoe UI', 'Helvetica', Arial, sans-serif;
+        color: #1a202c;
+        line-height: 1.65;
+        font-size: 11pt;
+        background: #fff;
+        padding: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    h1 {
+        font-size: 28pt;
+        color: #10b981;
+        margin: 0 0 0.5rem;
+        letter-spacing: -0.02em;
+        border-bottom: 4px solid #10b981;
+        padding-bottom: 0.5rem;
+    }
+    h2 {
+        font-size: 18pt;
+        color: #065f46;
+        margin: 2.5rem 0 1rem;
+        padding: 0.5rem 0 0.5rem 1rem;
+        border-left: 6px solid #10b981;
+        background: linear-gradient(90deg, #f0fdf4 0%, transparent 100%);
+    }
+    h3 {
+        font-size: 14pt;
+        color: #047857;
+        margin: 1.75rem 0 0.75rem;
+        font-weight: 700;
+    }
+    h4 {
+        font-size: 12pt;
+        color: #0f766e;
+        margin: 1.25rem 0 0.5rem;
+        font-weight: 700;
+    }
+    p { margin: 0.5rem 0; }
+    code {
+        background: #f1f5f9;
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 10pt;
+        color: #dc2626;
+        border: 1px solid #e2e8f0;
+    }
+    pre {
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 10pt;
+        line-height: 1.5;
+        margin: 0.75rem 0;
+        border-left: 4px solid #10b981;
+        page-break-inside: avoid;
+    }
+    pre code { background: none; color: inherit; border: none; padding: 0; }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 10pt;
+        page-break-inside: avoid;
+    }
+    th {
+        background: #10b981;
+        color: white;
+        padding: 0.7rem;
+        text-align: left;
+        font-weight: 700;
+        border: 1px solid #059669;
+    }
+    td {
+        padding: 0.6rem 0.7rem;
+        border: 1px solid #e2e8f0;
+        vertical-align: top;
+    }
+    tr:nth-child(even) { background: #f8fafc; }
+    .cover {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+        color: white;
+        border-radius: 20px;
+        margin-bottom: 3rem;
+        page-break-after: always;
+    }
+    .cover h1 {
+        color: white;
+        border: none;
+        font-size: 48pt;
+        margin-bottom: 1rem;
+    }
+    .cover .subtitle {
+        font-size: 18pt;
+        margin: 1rem 0;
+        opacity: 0.95;
+    }
+    .cover .info {
+        margin-top: 3rem;
+        font-size: 12pt;
+        opacity: 0.9;
+    }
+    .cover .info div { margin: 0.4rem 0; }
+    .toc {
+        background: #f0fdf4;
+        border: 2px solid #10b981;
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 2rem 0;
+        page-break-after: always;
+    }
+    .toc h2 {
+        border: none;
+        background: none;
+        padding: 0;
+        margin-top: 0;
+    }
+    .toc ol {
+        margin-left: 1.5rem;
+        line-height: 2;
+        font-size: 12pt;
+    }
+    .toc ol li a {
+        color: #065f46;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .warning, .info, .danger, .success {
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        border-left: 5px solid;
+        page-break-inside: avoid;
+    }
+    .warning { background: #fffbeb; border-color: #f59e0b; }
+    .warning::before { content: '⚠️ '; font-weight: bold; }
+    .info { background: #eff6ff; border-color: #3b82f6; }
+    .info::before { content: '💡 '; font-weight: bold; }
+    .danger { background: #fef2f2; border-color: #ef4444; }
+    .danger::before { content: '🚨 '; font-weight: bold; }
+    .success { background: #f0fdf4; border-color: #10b981; }
+    .success::before { content: '✅ '; font-weight: bold; }
+    .step {
+        background: #fff;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 1.25rem;
+        margin: 1rem 0;
+        counter-increment: step;
+        position: relative;
+        page-break-inside: avoid;
+    }
+    .step::before {
+        content: 'PASO ' counter(step);
+        display: inline-block;
+        background: #10b981;
+        color: white;
+        padding: 0.2rem 0.7rem;
+        border-radius: 6px;
+        font-size: 9pt;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+    }
+    .steps-container { counter-reset: step; }
+    .checklist { list-style: none; margin: 1rem 0; }
+    .checklist li {
+        padding: 0.5rem 0 0.5rem 2rem;
+        position: relative;
+        border-bottom: 1px dashed #e2e8f0;
+    }
+    .checklist li::before {
+        content: '☐';
+        position: absolute;
+        left: 0;
+        font-size: 14pt;
+        color: #10b981;
+    }
+    .badge {
+        display: inline-block;
+        padding: 0.15rem 0.6rem;
+        border-radius: 100px;
+        font-size: 9pt;
+        font-weight: 700;
+        color: white;
+    }
+    .badge.dev { background: #8b5cf6; }
+    .badge.admin { background: #10b981; }
+    .badge.cliente { background: #06b6d4; }
+    .badge.finanzas { background: #3b82f6; }
+    .badge.vigilante { background: #f59e0b; }
+    .badge.operador { background: #06b6d4; }
+    .page-break { page-break-after: always; }
+    .avoid-break { page-break-inside: avoid; }
+    .diagram {
+        background: #f8fafc;
+        border: 2px dashed #94a3b8;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+        font-family: 'Consolas', monospace;
+        font-size: 9pt;
+        white-space: pre;
+        overflow-x: auto;
+        line-height: 1.3;
+        page-break-inside: avoid;
+    }
+    .kbd {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        background: #1f2937;
+        color: white;
+        border-radius: 4px;
+        font-size: 9pt;
+        font-family: monospace;
+        box-shadow: 0 2px 0 #0f172a;
+    }
+    .toc-list { list-style: none; counter-reset: toc; }
+    .toc-list > li {
+        counter-increment: toc;
+        margin: 0.5rem 0;
+        font-weight: 700;
+        color: #065f46;
+        font-size: 13pt;
+    }
+    .toc-list > li::before {
+        content: counter(toc) '. ';
+        color: #10b981;
+    }
+    .toc-list ul {
+        list-style: none;
+        margin-left: 1.5rem;
+        margin-top: 0.4rem;
+        font-weight: 400;
+        font-size: 11pt;
+    }
+    .toc-list ul li { margin: 0.25rem 0; color: #334155; }
+    .footer-print {
+        margin-top: 3rem;
+        padding-top: 1rem;
+        border-top: 2px solid #e2e8f0;
+        text-align: center;
+        font-size: 9pt;
+        color: #64748b;
+    }
+    .print-only { display: none; }
+    @media print {
+        body { padding: 0; max-width: none; }
+        .no-print { display: none !important; }
+        a { color: inherit; text-decoration: none; }
+        h2 { page-break-after: avoid; }
+        h3 { page-break-after: avoid; }
+        table { font-size: 9pt; }
+        .cover { border-radius: 0; }
+    }
+    .print-btn {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: linear-gradient(135deg, #10b981, #06b6d4);
+        color: white;
+        border: none;
+        padding: 0.85rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 11pt;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(16,185,129,0.4);
+        z-index: 9999;
+    }
+    .print-btn:hover { transform: translateY(-2px); }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ Guardar como PDF</button>
+
+<!-- ============ PORTADA ============ -->
+<div class="cover">
+    <h1>SmartPark Pro</h1>
+    <div class="subtitle">Manual Completo para el Equipo de Desarrollo</div>
+    <div style="font-size: 14pt; margin: 1.5rem 0;">Versión 3.0 · Octubre 2026</div>
+    <div class="info">
+        <div>📘 Guía de instalación, uso y edición</div>
+        <div>💻 Stack: PHP 8.2 + MariaDB + Gemini IA</div>
+        <div>🎯 Estado del proyecto: 92% completado</div>
+    </div>
+</div>
+
+<!-- ============ ÍNDICE ============ -->
+<div class="toc">
+    <h2>📋 Índice de contenidos</h2>
+    <ol class="toc-list">
+        <li>Información general del proyecto
+            <ul><li>Stack técnico, roles, características</li></ul>
+        </li>
+        <li>Instalación y configuración inicial
+            <ul><li>Setup paso a paso · Verificación · Troubleshooting</li></ul>
+        </li>
+        <li>Cuentas de acceso y credenciales
+            <ul><li>Todos los usuarios · Cómo resetear contraseñas</li></ul>
+        </li>
+        <li>Estructura y organización del proyecto
+            <ul><li>Mapa de archivos · Convenciones</li></ul>
+        </li>
+        <li>Módulos del sistema explicados
+            <ul><li>Developer · Admin · Cliente · QR · IA · Anti-fraude · Backups</li></ul>
+        </li>
+        <li>Guía de testing paso a paso
+            <ul><li>Checklist completo · Cómo simular cada escenario</li></ul>
+        </li>
+        <li>Errores comunes y soluciones
+            <ul><li>12+ errores · Cómo leer logs · Debugging</li></ul>
+        </li>
+        <li>Guía de edición del proyecto
+            <ul><li>10 casos de modificación común</li></ul>
+        </li>
+        <li>Seguridad del sistema
+            <ul><li>Reglas de oro · Antes de subir a GitHub</li></ul>
+        </li>
+        <li>Roadmap y pendientes
+            <ul><li>Bloques 7-11 planeados</li></ul>
+        </li>
+        <li>Recuperación ante desastres
+            <ul><li>Restaurar backups · Resetear sistema</li></ul>
+        </li>
+        <li>Recursos y contacto
+            <ul><li>Documentación oficial · Canales de soporte</li></ul>
+        </li>
+    </ol>
+</div>
+
+<!-- ============ SECCIÓN 1 ============ -->
+<h1>1. Información General del Proyecto</h1>
+
+<h2>1.1 ¿Qué es SmartPark Pro?</h2>
+<p>SmartPark Pro es una <strong>plataforma SaaS multi-empresa</strong> para la gestión inteligente de parqueaderos. Permite que <strong>múltiples empresas</strong> (parqueaderos) operen en el mismo sistema, cada una con sus datos completamente aislados, tarifas propias, usuarios independientes y estadísticas separadas.</p>
+
+<div class="info">
+    <strong>Analogía simple:</strong> Es como Shopify o Uber, pero para parqueaderos. Cada empresa que se registra tiene su propio "mini-sistema" pero todos comparten la misma infraestructura del servidor.
+</div>
+
+<h2>1.2 Stack Tecnológico Completo</h2>
+
+<table>
+    <thead>
+        <tr><th>Capa</th><th>Tecnología</th><th>Propósito</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Backend</strong></td>
+            <td>PHP 8.2.12</td>
+            <td>Lógica del servidor, manejo de peticiones, sesiones</td>
+        </tr>
+        <tr>
+            <td><strong>Base de datos</strong></td>
+            <td>MariaDB 10.4.32</td>
+            <td>Almacenamiento de empresas, usuarios, registros, etc.</td>
+        </tr>
+        <tr>
+            <td><strong>Frontend</strong></td>
+            <td>HTML5 + CSS3 + JS vanilla</td>
+            <td>Interfaces de usuario sin frameworks pesados</td>
+        </tr>
+        <tr>
+            <td><strong>Servidor local</strong></td>
+            <td>XAMPP</td>
+            <td>Apache + MySQL + PHP en Windows</td>
+        </tr>
+        <tr>
+            <td><strong>IA</strong></td>
+            <td>Google Gemini 3.1-flash-lite</td>
+            <td>Asistente, sugerencias de celdas, análisis antifraude</td>
+        </tr>
+        <tr>
+            <td><strong>Emails</strong></td>
+            <td>PHPMailer + Gmail SMTP</td>
+            <td>Envío de 2FA, facturas, notificaciones</td>
+        </tr>
+        <tr>
+            <td><strong>QR</strong></td>
+            <td>Endroid QR Code</td>
+            <td>Generación local de códigos QR</td>
+        </tr>
+        <tr>
+            <td><strong>Cifrado</strong></td>
+            <td>OpenSSL AES-256-GCM</td>
+            <td>Proteger API keys en la base de datos</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>1.3 Los 6 Roles del Sistema</h2>
+
+<table>
+    <thead>
+        <tr><th>Rol</th><th>Badge</th><th>Permisos</th><th>Ejemplo de uso</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Developer</strong></td>
+            <td><span class="badge dev">DEV</span></td>
+            <td>Acceso TOTAL al sistema. Ve todas las empresas, aprueba registros, configura IA global, crea backups globales.</td>
+            <td>Tú y tu compañero</td>
+        </tr>
+        <tr>
+            <td><strong>Admin</strong></td>
+            <td><span class="badge admin">ADMIN</span></td>
+            <td>Solo ve SU empresa. Gestiona celdas, usuarios, tarifas, backups de su empresa.</td>
+            <td>Dueño del parqueadero</td>
+        </tr>
+        <tr>
+            <td><strong>Operador</strong></td>
+            <td><span class="badge operador">OPER</span></td>
+            <td>Registra entradas/salidas, cobra, ve celdas. No modifica configuración ni usuarios.</td>
+            <td>Empleado de caja</td>
+        </tr>
+        <tr>
+            <td><strong>Vigilante</strong></td>
+            <td><span class="badge vigilante">VIGI</span></td>
+            <td>Solo registro rápido de entrada y salida. Vista simplificada.</td>
+            <td>Guardia de puerta</td>
+        </tr>
+        <tr>
+            <td><strong>Finanzas</strong></td>
+            <td><span class="badge finanzas">FIN</span></td>
+            <td>Ve reportes financieros, recaudos, métodos de pago. No gestiona celdas.</td>
+            <td>Contador de la empresa</td>
+        </tr>
+        <tr>
+            <td><strong>Cliente</strong></td>
+            <td><span class="badge cliente">CLI</span></td>
+            <td>Ve solo sus propios vehículos, historial, paga sus parqueos.</td>
+            <td>Conductor que usa el parqueadero</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>1.4 Características Principales</h2>
+
+<ul style="margin-left: 2rem; line-height: 2;">
+    <li>✅ <strong>Multi-tenant real:</strong> Aislamiento total de datos entre empresas</li>
+    <li>✅ <strong>Autenticación con 2FA:</strong> Código OTP al correo</li>
+    <li>✅ <strong>Login por QR:</strong> Los clientes escanean, entran y pagan sin apps</li>
+    <li>✅ <strong>IA integrada:</strong> Sugiere celdas, responde preguntas, detecta fraudes</li>
+    <li>✅ <strong>Sistema anti-fraude:</strong> 5 capas de detección automática</li>
+    <li>✅ <strong>Backups inteligentes:</strong> Globales + por empresa, cifrados, anti-hackeo</li>
+    <li>✅ <strong>Auditoría completa:</strong> Cada acción queda registrada</li>
+    <li>✅ <strong>Múltiples métodos de pago:</strong> Efectivo, transferencia, prepago, mensualidad</li>
+    <li>✅ <strong>QR único por parqueadero:</strong> Imprimible en PDF</li>
+    <li>✅ <strong>Widget IA flotante:</strong> Chat con contexto según el rol</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 2 ============ -->
+<h1>2. Instalación y Configuración Inicial</h1>
+
+<h2>2.1 Requisitos Previos</h2>
+
+<table>
+    <thead><tr><th>Requisito</th><th>Versión mínima</th><th>Cómo verificar</th></tr></thead>
+    <tbody>
+        <tr><td>XAMPP</td><td>8.2+</td><td>Abrir el Panel de XAMPP</td></tr>
+        <tr><td>PHP</td><td>8.1</td><td><code>php -v</code> en terminal</td></tr>
+        <tr><td>MariaDB / MySQL</td><td>10.4</td><td>Panel XAMPP → MySQL</td></tr>
+        <tr><td>Composer</td><td>2.x</td><td><code>composer --version</code></td></tr>
+        <tr><td>Git</td><td>Cualquiera</td><td><code>git --version</code></td></tr>
+    </tbody>
+</table>
+
+<h2>2.2 Proceso de Instalación paso a paso</h2>
+
+<div class="steps-container">
+
+<div class="step">
+    <strong>Arrancar XAMPP</strong>
+    <ol style="margin-left: 1.5rem; margin-top: 0.75rem;">
+        <li>Abrir <strong>XAMPP Control Panel</strong> (clic derecho → Ejecutar como Administrador)</li>
+        <li>Clic en <strong>Start</strong> junto a <strong>Apache</strong></li>
+        <li>Clic en <strong>Start</strong> junto a <strong>MySQL</strong></li>
+        <li>Esperar a que ambos botones se pongan <span style="color: #10b981; font-weight: 700;">VERDES</span></li>
+    </ol>
+    <div class="warning" style="margin-top: 0.75rem;">
+        Si MySQL no arranca, verificar que no haya otro MySQL corriendo. Ejecutar en PowerShell como admin: <code>netstat -ano | findstr :3306</code>
+    </div>
+</div>
+
+<div class="step">
+    <strong>Instalar dependencias con Composer</strong>
+    <p style="margin-top: 0.75rem;">Abrir terminal (PowerShell o CMD) y ejecutar:</p>
+<pre><code>cd C:\xampp\htdocs\sistema2
+composer install</code></pre>
+    <p>Esto descarga las librerías: PHPMailer, Endroid QR Code, Bacon QR Code.</p>
+    <div class="warning">
+        Si dice "composer no se reconoce", hay que instalar Composer primero desde <code>getcomposer.org</code>
+    </div>
+</div>
+
+<div class="step">
+    <strong>Crear archivo <code>.env</code></strong>
+    <p style="margin-top: 0.75rem;">Copiar el archivo de ejemplo:</p>
+<pre><code>Copy-Item .env.example .env</code></pre>
+    <p>Editar el <code>.env</code> con el Bloc de Notas y verificar que tenga:</p>
+<pre><code>DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_NAME=smartpark
+DB_USER=root
+DB_PASS=
+DB_CHARSET=utf8mb4
+APP_URL=http://localhost/sistema2
+APP_CRYPTO_KEY=XXXXXXXXXXXX</code></pre>
+</div>
+
+<div class="step">
+    <strong>Generar APP_CRYPTO_KEY</strong>
+    <p style="margin-top: 0.75rem;">Ejecutar en la terminal:</p>
+<pre><code>php -r "echo base64_encode(random_bytes(32));"</code></pre>
+    <p>Copiar el resultado y pegarlo en el <code>.env</code> en la línea <code>APP_CRYPTO_KEY=</code>.</p>
+    <div class="danger">
+        <strong>CRÍTICO:</strong> Guardar esta clave en un lugar seguro. Si se pierde, no podrás descifrar las API keys guardadas.
+    </div>
+</div>
+
+<div class="step">
+    <strong>Crear la base de datos</strong>
+    <ol style="margin-left: 1.5rem; margin-top: 0.75rem;">
+        <li>Abrir <code>http://localhost/phpmyadmin</code></li>
+        <li>Clic en <strong>Nueva</strong> (panel izquierdo)</li>
+        <li>Nombre: <code>smartpark</code></li>
+        <li>Cotejamiento: <code>utf8mb4_general_ci</code></li>
+        <li>Clic en <strong>Crear</strong></li>
+    </ol>
+</div>
+
+<div class="step">
+    <strong>Importar el dump SQL</strong>
+    <ol style="margin-left: 1.5rem; margin-top: 0.75rem;">
+        <li>Seleccionar la base <code>smartpark</code> en el panel izquierdo</li>
+        <li>Pestaña <strong>Importar</strong></li>
+        <li>Clic en <strong>Seleccionar archivo</strong></li>
+        <li>Subir el archivo <code>smartpark.sql</code></li>
+        <li>Clic en <strong>Continuar</strong> (abajo)</li>
+        <li>Esperar a que diga "La importación se ha realizado correctamente"</li>
+    </ol>
+</div>
+
+<div class="step">
+    <strong>Verificar la instalación</strong>
+    <p style="margin-top: 0.75rem;">Abrir en el navegador:</p>
+<pre><code>http://localhost/sistema2/</code></pre>
+    <p>Debe cargar la página principal con el logo animado de SmartPark.</p>
+    <p style="margin-top: 0.75rem;">Luego probar el login:</p>
+<pre><code>http://localhost/sistema2/login_developer.php
+Usuario: developer
+Contraseña: Dev2026!</code></pre>
+</div>
+
+</div>
+
+<h2>2.3 Verificar que todo esté bien</h2>
+
+<p>Si algún paso falla, revisar el archivo de log de Apache:</p>
+
+<pre><code>Get-Content "C:\xampp\apache\logs\error.log" -Tail 30</code></pre>
+
+<table>
+    <thead><tr><th>Síntoma</th><th>Causa probable</th><th>Solución</th></tr></thead>
+    <tbody>
+        <tr><td>Página en blanco</td><td>Error PHP fatal</td><td>Ver el log de Apache</td></tr>
+        <tr><td>"No such file or directory"</td><td>Falta vendor/</td><td>Ejecutar <code>composer install</code></td></tr>
+        <tr><td>"Access denied for user"</td><td>MySQL no arrancó</td><td>Revisar XAMPP</td></tr>
+        <tr><td>"Unknown database 'smartpark'"</td><td>BD no importada</td><td>Volver al Paso 5</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 3 ============ -->
+<h1>3. Cuentas de Acceso y Credenciales</h1>
+
+<h2>3.1 Portal Developer (Global)</h2>
+
+<table>
+    <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+    <tbody>
+        <tr><td>URL</td><td><code>http://localhost/sistema2/login_developer.php</code></td></tr>
+        <tr><td>Usuario</td><td><code>developer</code></td></tr>
+        <tr><td>Contraseña</td><td><code>Dev2026!</code></td></tr>
+        <tr><td>Rol</td><td><span class="badge dev">DEVELOPER</span></td></tr>
+    </tbody>
+</table>
+
+<h4>Qué puede hacer</h4>
+<ul style="margin-left: 2rem;">
+    <li>Ver TODAS las empresas registradas</li>
+    <li>Aprobar / rechazar / suspender empresas</li>
+    <li>Ver logs de auditoría globales</li>
+    <li>Configurar la IA (API key, modelo, proveedor)</li>
+    <li>Configurar SMTP global</li>
+    <li>Activar modo mantenimiento</li>
+    <li>Crear backups globales (todas las empresas)</li>
+    <li>Ver estado técnico del servidor</li>
+</ul>
+
+<h2>3.2 Portal Empresa — Admin "Empresa Demo SmartPark"</h2>
+
+<table>
+    <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+    <tbody>
+        <tr><td>URL</td><td><code>http://localhost/sistema2/login_empresa.php</code></td></tr>
+        <tr><td>Empresa</td><td>Empresa Demo SmartPark</td></tr>
+        <tr><td>Usuario</td><td><code>admin</code></td></tr>
+        <tr><td>Contraseña</td><td><code>Admin2026!</code></td></tr>
+        <tr><td>NIT</td><td><code>000000000-0</code></td></tr>
+        <tr><td>Rol</td><td><span class="badge admin">ADMIN</span></td></tr>
+    </tbody>
+</table>
+
+<h2>3.3 Portal Empresa — Admin "Parqueadero El Centro"</h2>
+
+<table>
+    <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+    <tbody>
+        <tr><td>URL</td><td><code>http://localhost/sistema2/login_empresa.php</code></td></tr>
+        <tr><td>Empresa</td><td>Parqueadero El Centro</td></tr>
+        <tr><td>Usuario</td><td><code>admin_elcentro</code></td></tr>
+        <tr><td>Contraseña</td><td>Resetear con SQL (ver sección 3.7)</td></tr>
+        <tr><td>NIT</td><td><code>900123456-7</code></td></tr>
+        <tr><td>Rol</td><td><span class="badge admin">ADMIN</span></td></tr>
+    </tbody>
+</table>
+
+<h2>3.4 Portal Cliente (Conductores)</h2>
+
+<table>
+    <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+    <tbody>
+        <tr><td>URL</td><td><code>http://localhost/sistema2/login_empresa.php</code></td></tr>
+        <tr><td>Empresa</td><td>Empresa Demo SmartPark</td></tr>
+        <tr><td>Usuario</td><td><code>cliente1</code></td></tr>
+        <tr><td>Contraseña</td><td><code>Admin2026!</code></td></tr>
+        <tr><td>Rol</td><td><span class="badge cliente">CLIENTE</span></td></tr>
+    </tbody>
+</table>
+
+<h2>3.5 Portal Admin con NIT</h2>
+
+<table>
+    <thead><tr><th>Campo</th><th>Valor</th></tr></thead>
+    <tbody>
+        <tr><td>URL</td><td><code>http://localhost/sistema2/login_empresa_admin.php</code></td></tr>
+        <tr><td>NIT</td><td><code>000000000-0</code></td></tr>
+        <tr><td>Usuario</td><td><code>admin</code></td></tr>
+        <tr><td>Contraseña</td><td><code>Admin2026!</code></td></tr>
+    </tbody>
+</table>
+
+<h2>3.6 Resumen rápido de todas las cuentas</h2>
+
+<table>
+    <thead>
+        <tr><th>Usuario</th><th>Rol</th><th>Empresa</th><th>Contraseña</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><code>developer</code></td><td><span class="badge dev">DEV</span></td><td>Global</td><td><code>Dev2026!</code></td></tr>
+        <tr><td><code>admin</code></td><td><span class="badge admin">ADMIN</span></td><td>Demo SmartPark</td><td><code>Admin2026!</code></td></tr>
+        <tr><td><code>admin_elcentro</code></td><td><span class="badge admin">ADMIN</span></td><td>El Centro</td><td>Resetear</td></tr>
+        <tr><td><code>cliente1</code></td><td><span class="badge cliente">CLIENTE</span></td><td>Demo SmartPark</td><td><code>Admin2026!</code></td></tr>
+        <tr><td><code>Miguel</code></td><td><span class="badge cliente">CLIENTE</span></td><td>Demo SmartPark</td><td>Resetear</td></tr>
+        <tr><td><code>nose</code></td><td><span class="badge cliente">CLIENTE</span></td><td>Demo SmartPark</td><td>Resetear</td></tr>
+    </tbody>
+</table>
+
+<h2>3.7 Cómo resetear una contraseña olvidada</h2>
+
+<h4>Opción A — Desde la terminal (recomendado)</h4>
+
+<div class="steps-container">
+<div class="step">
+    <strong>Generar el hash</strong>
+    <pre><code>php -r "echo password_hash('NuevaClave123', PASSWORD_BCRYPT, ['cost' => 12]);"</code></pre>
+    <p>Copiar el resultado (empieza con <code>$2y$12$</code>)</p>
+</div>
+
+<div class="step">
+    <strong>Actualizar en la base de datos</strong>
+    <p>En phpMyAdmin → SQL:</p>
+    <pre><code>UPDATE user SET password = 'PEGA_EL_HASH_AQUI' WHERE username = 'admin';</code></pre>
+    <p>Debe decir "1 fila afectada"</p>
+</div>
+
+<div class="step">
+    <strong>Probar el login</strong>
+    <p>Ir a <code>login_empresa.php</code> con la nueva contraseña.</p>
+</div>
+</div>
+
+<h4>Opción B — Script automático</h4>
+
+<pre><code>$hash = & "C:\xampp\php\php.exe" -r "echo password_hash('NuevaClave123', PASSWORD_BCRYPT, ['cost' => 12]);"
+& "C:\xampp\mysql\bin\mysql.exe" -u root -e "USE smartpark; UPDATE user SET password = '$hash' WHERE username = 'admin';"</code></pre>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 4 ============ -->
+<h1>4. Estructura y Organización del Proyecto</h1>
+
+<h2>4.1 Mapa completo de archivos</h2>
+
+<div class="diagram">sistema2/
+├── .env                          → Configuración (SECRETO, nunca compartir)
+├── .env.example                  → Plantilla pública
+├── .gitignore                    → Archivos ignorados por Git
+├── .htaccess                     → Protecciones Apache
+├── composer.json                 → Dependencias del proyecto
+├── index.php                     → Página principal
+│
+├── AUTENTICACIÓN/
+│   ├── login.php
+│   ├── login_empresa.php         → Login con selector de empresa
+│   ├── login_empresa_admin.php   → Login con NIT
+│   ├── login_developer.php       → Login global
+│   ├── logout.php
+│   ├── registro_empresa.php      → Wizard 3 pasos
+│   ├── olvidar_password.php
+│   ├── reset_password.php
+│   └── verify_2fa.php
+│
+├── DASHBOARDS/
+│   ├── dashboard_developer.php
+│   ├── dashboard_admin.php
+│   ├── dashboard_cliente.php
+│   ├── dashboard_finanzas.php
+│   ├── dashboard_vigilante.php   (pendiente)
+│   ├── admin.php
+│   └── dev_*.php                  (9 sub-páginas developer)
+│
+├── OPERACIÓN/
+│   ├── entrada_qr.php            → Cliente móvil por QR
+│   ├── mi_auto.php               → Consulta por placa
+│   ├── registro_entrada.php      → Staff con tabs
+│   ├── modulo_pagos.php
+│   ├── pagar.php
+│   ├── salida.php
+│   ├── mi_parqueadero.php
+│   ├── mi_cuenta.php
+│   └── ver_factura.php
+│
+├── QR/
+│   ├── ver_qr.php                → Panel para imprimir
+│   ├── generar_qr_imagen.php     → Endpoint PNG
+│   └── exportar_qr_pdf.php
+│
+├── IA/
+│   ├── ia_chat_api.php
+│   ├── ia_contexto.php
+│   ├── ia_reportar.php
+│   └── smartpark_ai.php
+│
+├── HELPERS/
+│   ├── conexion.php
+│   ├── mt_core.php               → Núcleo (41 funciones)
+│   ├── helpers_entrada.php
+│   ├── helpers_anti_fraude.php
+│   ├── helpers_url.php
+│   ├── csrf.php
+│   ├── env.php
+│   ├── backup.php
+│   └── mailer.php
+│
+├── config/
+│   └── ai_config.php             → Cliente IA unificado
+│
+├── partials/
+│   ├── ia_widget.php
+│   ├── navbar.php
+│   ├── floor_plan.php
+│   └── error_qr.php
+│
+├── assets/
+│   ├── css/
+│   │   ├── main.css              → Estilo principal
+│   │   ├── legacy-compat.css
+│   │   └── ia_widget.css
+│   └── js/
+│       ├── app.js
+│       └── ia_widget.js
+│
+├── backups/                      → .sql protegidos
+├── vendor/                       → Dependencias
+└── IMG/                          → Logo</div>
+
+<h2>4.2 Convenciones de código</h2>
+
+<table>
+    <thead><tr><th>Convención</th><th>Ejemplo</th><th>Por qué</th></tr></thead>
+    <tbody>
+        <tr><td>Archivos PHP</td><td><code>snake_case.php</code></td><td>Consistencia</td></tr>
+        <tr><td>Funciones</td><td><code>snake_case()</code></td><td>Estilo PHP moderno</td></tr>
+        <tr><td>Clases</td><td><code>PascalCase</code></td><td>Estándar PSR</td></tr>
+        <tr><td>Constantes</td><td><code>UPPER_SNAKE</code></td><td>Inmutables</td></tr>
+        <tr><td>Variables</td><td><code>$camelCase</code> o <code>$snake_case</code></td><td>Claridad</td></tr>
+        <tr><td>Tablas BD</td><td><code>snake_case</code> plural</td><td>ej: <code>registros_parqueo</code></td></tr>
+        <tr><td>Columna tenant</td><td><code>empresa_id</code> siempre</td><td>Filtro multi-tenant</td></tr>
+    </tbody>
+</table>
+
+<h2>4.3 Reglas de desarrollo</h2>
+
+<div class="warning">
+    <strong>REGLA #1 — Multi-tenant estricto:</strong> TODAS las queries deben filtrar por <code>empresa_id</code>. Excepción: cuando el rol es <code>developer</code>.
+</div>
+
+<div class="warning">
+    <strong>REGLA #2 — CSRF obligatorio:</strong> Todo formulario POST debe tener <code>&lt;?= csrf_field() ?&gt;</code>.
+</div>
+
+<div class="warning">
+    <strong>REGLA #3 — Sesiones y roles:</strong> Siempre validar el rol con <code>require_role()</code> o <code>require_role_empresa()</code>.
+</div>
+
+<div class="warning">
+    <strong>REGLA #4 — Sin BOM:</strong> Los archivos PHP deben guardarse sin BOM. Verificar con <code>[System.IO.File]::ReadAllBytes()</code>.
+</div>
+
+<div class="warning">
+    <strong>REGLA #5 — PDO preparado:</strong> NUNCA concatenar variables en SQL. Usar <code>prepare()</code> y <code>execute()</code>.
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 5 ============ -->
+<h1>5. Módulos del Sistema</h1>
+
+<h2>5.1 Portal Developer</h2>
+
+<p>El hub central del developer tiene <strong>9 módulos</strong> accesibles desde el dashboard:</p>
+
+<table>
+    <thead><tr><th>Módulo</th><th>Archivo</th><th>Función principal</th></tr></thead>
+    <tbody>
+        <tr><td>Empresas</td><td><code>dev_empresas.php</code></td><td>Aprobar, rechazar, suspender empresas. Filtros por estado.</td></tr>
+        <tr><td>Parqueaderos</td><td><code>dev_parqueaderos.php</code></td><td>Stats por parqueadero: celdas, ocupación, recaudo.</td></tr>
+        <tr><td>Registros</td><td><code>dev_registros.php</code></td><td>Historial global con filtros avanzados.</td></tr>
+        <tr><td>Usuarios</td><td><code>dev_usuarios.php</code></td><td>Ver usuarios + sus empresas asociadas.</td></tr>
+        <tr><td>Backups</td><td><code>dev_backups.php</code></td><td>Crear backups globales y por empresa.</td></tr>
+        <tr><td>Logs</td><td><code>dev_logs.php</code></td><td>Auditoría de acciones en el sistema.</td></tr>
+        <tr><td>Sistema</td><td><code>dev_sistema.php</code></td><td>Info PHP, MySQL, extensiones, tamaño BD.</td></tr>
+        <tr><td>Config</td><td><code>dev_config.php</code></td><td>Configuración IA, SMTP, modo mantenimiento.</td></tr>
+    </tbody>
+</table>
+
+<h2>5.2 Portal Admin Empresa</h2>
+
+<p>El admin de cada empresa ve SOLO los datos de su empresa. Secciones del dashboard:</p>
+
+<ul style="margin-left: 2rem;">
+    <li>📊 <strong>KPIs:</strong> Celdas totales, ocupadas, libres, activos, parqueaderos, usuarios, recaudo hoy/mes</li>
+    <li>🅿️ <strong>Mis parqueaderos:</strong> Grid de sedes con stats individuales</li>
+    <li>🚨 <strong>Alertas inteligentes:</strong> Pagos pendientes, mantenimiento, ocupación alta</li>
+    <li>📈 <strong>Gráficos:</strong> Donut de ocupación, barras de recaudo 7 días, top 5 placas</li>
+    <li>▤ <strong>Últimos registros:</strong> Tabla con estado de pago</li>
+    <li>$ <strong>Últimos pagos:</strong> Lista con método y monto</li>
+    <li>◇ <strong>Usuarios:</strong> Tabla con roles y estado</li>
+    <li>⬇ <strong>Backups:</strong> Crear y descargar backups propios</li>
+</ul>
+
+<h2>5.3 Portal Cliente</h2>
+
+<p>Dashboard personal del conductor con:</p>
+
+<ul style="margin-left: 2rem;">
+    <li>👋 <strong>Hero personalizado</strong> con avatar y saludo</li>
+    <li>📊 <strong>4 KPIs personales:</strong> Vehículos, visitas, horas, gasto total</li>
+    <li>🚗 <strong>Card de vehículo activo:</strong> Si tiene uno parqueado ahora (celda, tiempo, estimado)</li>
+    <li>🚗 <strong>Mis vehículos:</strong> Grid de vehículos registrados</li>
+    <li>📜 <strong>Historial:</strong> Últimas 10 visitas con estado de pago</li>
+    <li>✦ <strong>Chat IA:</strong> Pregunta sobre SUS propios datos</li>
+</ul>
+
+<h2>5.4 Sistema QR completo</h2>
+
+<h3>Flujo end-to-end</h3>
+
+<div class="diagram">┌─────────────────────────────────────────────────────────────────┐
+│ PASO 1: Admin genera QRs en ver_qr.php                          │
+│         Ve los 3 tipos + botones para imprimir/descargar PDF    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ PASO 2: Cliente escanea el QR con su celular                    │
+│         QR de ENTRADA → entrada_qr.php?token=X                  │
+│         QR de RECEPCIÓN → mi_auto.php?token=X                   │
+│         QR de CELDA → entrada_qr.php?token=X&modo=celda         │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ PASO 3: Sistema valida el token                                │
+│         - Verifica que el parqueadero exista                    │
+│         - Verifica que la empresa esté aprobada y activa        │
+│         - Extrae empresa_id y parqueadero_id                    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ PASO 4: Cliente ingresa su placa                                │
+│         - Sistema detecta tipo (carro/moto/bici)                │
+│         - Analiza si es sospechoso (anti-fraude)                │
+│         - IA sugiere celda óptima                               │
+│         - Registra entrada + genera token QR del ticket         │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ PASO 5: Cliente guarda el QR del ticket                         │
+│         Al salir, escanea el QR o muestra su placa              │
+│         Sistema cobra automáticamente                           │
+└─────────────────────────────────────────────────────────────────┘</div>
+
+<h3>Los 3 tipos de QR</h3>
+
+<table>
+    <thead><tr><th>Tipo</th><th>URL destino</th><th>Uso</th></tr></thead>
+    <tbody>
+        <tr><td>🚪 <strong>Entrada</strong></td><td><code>entrada_qr.php?token=X</code></td><td>Pegado en la puerta del parqueadero. El cliente llega, escanea y registra su entrada.</td></tr>
+        <tr><td>🏢 <strong>Recepción</strong></td><td><code>mi_auto.php?token=X</code></td><td>Pegado en el mostrador. El cliente consulta su vehículo, ve su celda y paga.</td></tr>
+        <tr><td>🅿️ <strong>Celda</strong></td><td><code>entrada_qr.php?token=X&modo=celda</code></td><td>Pegado en cada celda individual. Modo especial con mensaje informativo.</td></tr>
+    </tbody>
+</table>
+
+<h2>5.5 IA Gemini con contexto por rol</h2>
+
+<p>El sistema tiene un <strong>widget flotante de chat con IA</strong> disponible en todos los dashboards. La IA <strong>conoce los datos específicos del usuario según su rol</strong>:</p>
+
+<table>
+    <thead><tr><th>Rol</th><th>Contexto que ve la IA</th><th>Preguntas que puede responder</th></tr></thead>
+    <tbody>
+        <tr><td><span class="badge dev">DEV</span></td><td>Todas las empresas, todos los usuarios, sistema global</td><td>"¿Cuántas empresas hay?" · "¿Cuál es el recaudo total?"</td></tr>
+        <tr><td><span class="badge admin">ADMIN</span></td><td>Su empresa: celdas, registros, recaudo</td><td>"¿Cuántas celdas libres tengo?" · "¿Cuánto he recaudado hoy?"</td></tr>
+        <tr><td><span class="badge finanzas">FIN</span></td><td>Solo datos financieros de su empresa</td><td>"¿Cuál es el método de pago más usado?"</td></tr>
+        <tr><td><span class="badge vigilante">VIGI</span></td><td>Estado operativo: celdas, vehículos activos</td><td>"¿Cómo registro una entrada?"</td></tr>
+        <tr><td><span class="badge cliente">CLI</span></td><td>Solo SUS propios datos</td><td>"¿Dónde está mi carro?" · "¿Cuánto debo?"</td></tr>
+    </tbody>
+</table>
+
+<div class="danger">
+    <strong>SEGURIDAD CRÍTICA:</strong> La IA tiene filtros que bloquean preguntas fuera del rol. Si un cliente pregunta "¿Cuántos usuarios hay en el sistema?", la IA rechaza la pregunta con un mensaje de "no tienes permisos".
+</div>
+
+<h2>5.6 Sistema anti-fraude</h2>
+
+<p>El sistema detecta 5 tipos de fraude automáticamente:</p>
+
+<table>
+    <thead><tr><th>Tipo de fraude</th><th>Cómo lo detecta</th><th>Acción</th></tr></thead>
+    <tbody>
+        <tr><td>Placas duplicadas activas</td><td>Misma placa con 2+ registros activos</td><td>Alerta en dashboard</td></tr>
+        <tr><td>Auto disfrazado de bicicleta</td><td>Usuario registra 3+ bicis en 24h</td><td>Marca como sospechoso</td></tr>
+        <tr><td>Pago sin salida</td><td>Pagó hace &gt;2h pero sigue activo</td><td>Alerta con cobro pendiente</td></tr>
+        <tr><td>Placa inválida</td><td>Formato no coincide con Colombia</td><td>Rechaza el registro</td></tr>
+        <tr><td>Patrón anómalo</td><td>IA analiza y marca riesgo</td><td>Alerta en dashboard</td></tr>
+    </tbody>
+</table>
+
+<h2>5.7 Sistema de backups</h2>
+
+<table>
+    <thead><tr><th>Aspecto</th><th>Detalle</th></tr></thead>
+    <tbody>
+        <tr><td><strong>Quién puede crear</strong></td><td>Developer (global) y Admin (de su empresa)</td></tr>
+        <tr><td><strong>Quién puede descargar</strong></td><td>Ambos roles según su scope</td></tr>
+        <tr><td><strong>Quién puede eliminar</strong></td><td>SOLO developer (seguridad anti-hackeo)</td></tr>
+        <tr><td><strong>Rate limiting</strong></td><td>5 backups por hora por usuario</td></tr>
+        <tr><td><strong>Nombres</strong></td><td><code>backup_tipo_empX_fecha_hash.sql</code></td></tr>
+        <tr><td><strong>Ubicación</strong></td><td>Carpeta <code>/backups/</code> protegida con .htaccess</td></tr>
+        <tr><td><strong>Auditoría</strong></td><td>Cada backup queda registrado en <code>auditoria_admin</code></td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 6 ============ -->
+<h1>6. Guía de Testing</h1>
+
+<h2>6.1 Checklist completo por módulo</h2>
+
+<h3>A. Autenticación</h3>
+<ul class="checklist">
+    <li>Login developer con <code>developer</code> / <code>Dev2026!</code></li>
+    <li>Login empresa con selector y NIT correctos</li>
+    <li>Login empresa admin con NIT</li>
+    <li>Código 2FA llega al correo en &lt;30s</li>
+    <li>Logout limpia la sesión y redirige a index</li>
+    <li>"Olvidé mi contraseña" envía correo con enlace</li>
+    <li>Reset password desde el enlace funciona</li>
+    <li>Cambiar contraseña desde el perfil funciona</li>
+</ul>
+
+<h3>B. Registro de empresa (wizard)</h3>
+<ul class="checklist">
+    <li>Paso 1: Datos de empresa se guardan en sesión</li>
+    <li>Paso 2: Datos del parqueadero se guardan</li>
+    <li>Paso 3: Se crea admin + empresa + parqueadero + QR</li>
+    <li>Paso 4: Pantalla de éxito muestra datos correctos</li>
+    <li>Se generan 20 celdas por defecto</li>
+    <li>Se asignan tarifas por defecto ($4000 carro, $2000 moto)</li>
+</ul>
+
+<h3>C. Portal Developer</h3>
+<ul class="checklist">
+    <li>Dashboard carga las 8 tarjetas KPI</li>
+    <li>Empresas se filtran correctamente (todas/pendientes/aprobadas)</li>
+    <li>Aprobar empresa cambia estado a "aprobada"</li>
+    <li>Rechazar empresa cambia estado a "rechazada"</li>
+    <li>Suspender empresa cambia estado global</li>
+    <li>Logs muestran las últimas acciones</li>
+    <li>Sistema muestra versión PHP, MySQL, tamaño BD</li>
+    <li>Config guarda valores y se reflejan en BD</li>
+    <li>Crear backup global genera archivo .sql</li>
+    <li>Descargar backup funciona</li>
+    <li>Eliminar backup solo developer</li>
+</ul>
+
+<h3>D. Portal Admin</h3>
+<ul class="checklist">
+    <li>Dashboard carga SOLO datos de su empresa</li>
+    <li>KPIs muestran números correctos</li>
+    <li>Cambiar estado de celda (disponible/ocupado/mantenimiento)</li>
+    <li>Buscador filtra por placa, correo, fecha</li>
+    <li>Mis parqueaderos muestra las sedes</li>
+    <li>Crear backup de SU empresa funciona</li>
+    <li>Alertas de fraude aparecen si hay</li>
+    <li>Alertas de pago sin salida aparecen</li>
+</ul>
+
+<h3>E. Portal Cliente</h3>
+<ul class="checklist">
+    <li>Dashboard muestra el nombre del cliente</li>
+    <li>KPIs: vehículos, visitas, horas, gasto</li>
+    <li>Card de vehículo activo (si tiene)</li>
+    <li>Empty state (si no tiene activo)</li>
+    <li>Mis vehículos en grid</li>
+    <li>Historial visual con estados</li>
+    <li>Botón "Salir y pagar" funciona</li>
+    <li>Botón "Ver ubicación" funciona</li>
+</ul>
+
+<h3>F. Sistema QR</h3>
+<ul class="checklist">
+    <li><code>ver_qr.php</code> carga los 3 tabs (entrada/recepción/celda)</li>
+    <li>Cada QR apunta a URL diferente</li>
+    <li>Escanear QR de entrada desde móvil funciona</li>
+    <li>Escanear QR de recepción desde móvil funciona</li>
+    <li>Registrar vehículo por QR genera ticket</li>
+    <li>El ticket tiene QR escaneable</li>
+    <li>Escaneando el ticket al salir cobra automáticamente</li>
+    <li>Descargar PDF de QRs funciona</li>
+</ul>
+
+<h3>G. Widget IA</h3>
+<ul class="checklist">
+    <li>Botón ✦ aparece arriba derecha en todos los dashboards</li>
+    <li>Clic abre el panel con animación</li>
+    <li>Chat responde en español</li>
+    <li>Respuestas son coherentes con el contexto</li>
+    <li>Bloquea preguntas fuera de rol</li>
+    <li>Retry funciona si Gemini está saturado</li>
+    <li>Botón "Reportar problema" guarda en <code>ia_reportes</code></li>
+</ul>
+
+<h3>H. Anti-fraude</h3>
+<ul class="checklist">
+    <li>Detecta placa inválida (ej: 123456)</li>
+    <li>Detecta placa duplicada activa</li>
+    <li>Detecta pago sin salida (&gt;2h)</li>
+    <li>Marca registros sospechosos</li>
+    <li>Alertas aparecen en dashboard admin</li>
+</ul>
+
+<h2>6.2 Cómo simular cada escenario</h2>
+
+<h4>Probar QR desde el móvil</h4>
+<div class="steps-container">
+<div class="step">
+    <strong>Obtener la IP LAN de la PC</strong>
+    <pre><code>ipconfig | Select-String "IPv4"</code></pre>
+    <p>Ejemplo: <code>192.168.1.100</code></p>
+</div>
+<div class="step">
+    <strong>Verificar firewall de Windows</strong>
+    <pre><code>New-NetFirewallRule -DisplayName "XAMPP Apache" -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow</code></pre>
+    <p>(PowerShell como Administrador)</p>
+</div>
+<div class="step">
+    <strong>Desde el móvil (misma WiFi)</strong>
+    <p>Abrir: <code>http://[IP_LAN]/sistema2/ver_qr.php</code></p>
+</div>
+<div class="step">
+    <strong>Escanear el QR</strong>
+    <p>Con la cámara del celular, apuntar al QR de "Entrada".</p>
+</div>
+</div>
+
+<h4>Probar anti-fraude</h4>
+<div class="steps-container">
+<div class="step">
+    <strong>Registrar 3 bicicletas seguidas</strong>
+    <p>En <code>registro_entrada.php</code> con la pestaña bicicleta, registrar 3 placas <code>BICI-0001</code>, <code>BICI-0002</code>, <code>BICI-0003</code>.</p>
+</div>
+<div class="step">
+    <strong>Verificar alerta</strong>
+    <p>Abrir <code>dashboard_admin.php</code>. Debe aparecer alerta de "Usuario registró 3+ bicis".</p>
+</div>
+</div>
+
+<h4>Probar IA por rol</h4>
+<div class="steps-container">
+<div class="step">
+    <strong>Como cliente</strong>
+    <p>Login con <code>cliente1</code> → abrir chat → preguntar "¿Cuántos usuarios hay?" → debe rechazar.</p>
+</div>
+<div class="step">
+    <strong>Como admin</strong>
+    <p>Login con <code>admin</code> → preguntar "¿Cuánto recauda otra empresa?" → debe rechazar.</p>
+</div>
+<div class="step">
+    <strong>Como developer</strong>
+    <p>Login con <code>developer</code> → preguntar cualquier cosa → debe permitir.</p>
+</div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 7 ============ -->
+<h1>7. Errores Comunes y Soluciones</h1>
+
+<h2>7.1 Tabla de errores frecuentes</h2>
+
+<table>
+    <thead><tr><th>Error</th><th>Causa</th><th>Solución</th></tr></thead>
+    <tbody>
+        <tr>
+            <td><code>SQLSTATE[HY093] Invalid parameter number</code></td>
+            <td>Mismo placeholder PDO usado 2 veces (<code>:u OR :u</code>)</td>
+            <td>Cambiar a <code>:u1, :u2</code></td>
+        </tr>
+        <tr>
+            <td><code>SQLSTATE[42S22] Unknown column 'X'</code></td>
+            <td>La columna no existe en la tabla</td>
+            <td>Verificar con <code>SHOW COLUMNS FROM tabla</code></td>
+        </tr>
+        <tr>
+            <td><code>Cannot modify header information</code></td>
+            <td>El archivo PHP tiene BOM o espacios antes de <code>&lt;?php</code></td>
+            <td>Re-guardar sin BOM</td>
+        </tr>
+        <tr>
+            <td><code>vendor/autoload.php not found</code></td>
+            <td>Falta <code>composer install</code></td>
+            <td>Ejecutar <code>composer install</code></td>
+        </tr>
+        <tr>
+            <td><code>Access denied for user 'root'@'localhost'</code></td>
+            <td>MySQL no arrancó o <code>.env</code> mal</td>
+            <td>Revisar XAMPP + <code>.env</code></td>
+        </tr>
+        <tr>
+            <td>IA responde "high demand"</td>
+            <td>Gemini saturado</td>
+            <td>Retry automático funciona; esperar 10-30s</td>
+        </tr>
+        <tr>
+            <td>IA responde "quota exceeded"</td>
+            <td>Límite diario agotado</td>
+            <td>Cambiar modelo a <code>gemini-3.8-flash</code> o esperar 24h</td>
+        </tr>
+        <tr>
+            <td>QR apunta a <code>localhost</code> desde el móvil</td>
+            <td>El móvil no puede resolver "localhost"</td>
+            <td>Usar <code>helpers_url.php</code> con IP LAN</td>
+        </tr>
+        <tr>
+            <td><code>Undefined array key 'X'</code></td>
+            <td>La key no existe en el array</td>
+            <td>Usar <code>??</code> o <code>isset()</code></td>
+        </tr>
+        <tr>
+            <td>Widget IA no aparece</td>
+            <td>Falta <code>require_once 'csrf.php'</code></td>
+            <td>Agregar al top del dashboard</td>
+        </tr>
+        <tr>
+            <td>Botón IA abajo en vez de arriba</td>
+            <td>CSS cacheado</td>
+            <td>Ctrl+Shift+Supr + verificar <code>!important</code></td>
+        </tr>
+        <tr>
+            <td>Formulario no envía</td>
+            <td>CSRF token expiró</td>
+            <td>Recargar la página</td>
+        </tr>
+        <tr>
+            <td>Backup no se crea</td>
+            <td>Permisos de carpeta <code>/backups/</code></td>
+            <td>Verificar permisos en Windows</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>7.2 Cómo ver el error real</h2>
+
+<h4>Log de Apache (errores PHP)</h4>
+<pre><code>Get-Content "C:\xampp\apache\logs\error.log" -Tail 30</code></pre>
+
+<h4>Log de MySQL (errores BD)</h4>
+<pre><code>Get-Content "C:\xampp\mysql\data\mysql_error.log" -Tail 30</code></pre>
+
+<h4>Mostrar errores en pantalla (solo desarrollo)</h4>
+<p>Agregar al inicio del archivo problemático:</p>
+<pre><code>error_reporting(E_ALL);
+ini_set('display_errors', '1');</code></pre>
+
+<div class="danger">
+    <strong>NUNCA</strong> dejar <code>display_errors=1</code> en producción. Expone rutas y datos sensibles.
+</div>
+
+<h2>7.3 Diagnóstico del sistema completo</h2>
+
+<p>Ejecutar el analizador de inconsistencias:</p>
+<pre><code>& "C:\xampp\php\php.exe" analizar_inconsistencias.php</code></pre>
+
+<p>Esto detecta:</p>
+<ul style="margin-left: 2rem;">
+    <li>Placas con tipo incorrecto</li>
+    <li>Duplicados activos</li>
+    <li>Registros viejos sin salida</li>
+    <li>Celdas huérfanas</li>
+    <li>Registros sin correo</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 8 ============ -->
+<h1>8. Guía de Edición del Proyecto</h1>
+
+<h2>8.1 Cambiar colores del tema</h2>
+
+<p><strong>Archivo:</strong> <code>assets/css/main.css</code> (primeras líneas)</p>
+
+<pre><code>:root {
+    --verde-esmeralda: #10b981;    /* color principal */
+    --cyan-electrico: #06b6d4;     /* color secundario */
+    --bg-base: #030712;             /* fondo oscuro */
+    --danger: #ef4444;              /* rojo de errores */
+    --warning: #f59e0b;             /* amarillo de alertas */
+}</code></pre>
+
+<div class="info">
+    Cambiar el valor HEX de cualquier variable y todo el sitio se actualiza automáticamente. NO tocar los otros archivos CSS.
+</div>
+
+<h2>8.2 Cambiar tarifas por defecto</h2>
+
+<p>Desde el panel: <strong>Dashboard Admin → Configuración</strong></p>
+
+<p>O directo en SQL:</p>
+<pre><code>UPDATE tarifas 
+SET precio = 5000 
+WHERE empresa_id = 1 
+  AND tipo_vehiculo = 'carro' 
+  AND tipo_tarifa = 'hora';</code></pre>
+
+<h2>8.3 Cambiar el modelo de IA</h2>
+
+<p>Desde el panel: <strong>Developer → Configuración → Modelo específico</strong></p>
+
+<p>O directo en SQL:</p>
+<pre><code>UPDATE configuracion 
+SET valor = 'gemini-3.8-flash' 
+WHERE clave = 'IA_MODELO' 
+  AND empresa_id IS NULL;</code></pre>
+
+<table>
+    <thead><tr><th>Modelo</th><th>Cuota/día</th><th>Recomendado para</th></tr></thead>
+    <tbody>
+        <tr><td><code>gemini-3.1-flash-lite</code></td><td>500</td><td>Uso general (default)</td></tr>
+        <tr><td><code>gemini-3.8-flash</code></td><td>20</td><td>Análisis complejos</td></tr>
+        <tr><td><code>gemini-2.5-flash</code></td><td>250</td><td>Fallback</td></tr>
+    </tbody>
+</table>
+
+<h2>8.4 Agregar un nuevo tipo de vehículo</h2>
+
+<h4>Paso 1: Modificar helpers</h4>
+<p>En <code>helpers_entrada.php</code>:</p>
+<pre><code>const TIPO_CAMION = 'camion';</code></pre>
+
+<h4>Paso 2: Modificar BD</h4>
+<pre><code>ALTER TABLE cupos 
+    MODIFY COLUMN tipo ENUM('carro','moto','bicicleta','electrico','camion');
+
+ALTER TABLE registros_parqueo 
+    MODIFY COLUMN tipo_vehiculo ENUM('carro','moto','bicicleta','electrico','camion');
+
+ALTER TABLE user_vehiculo 
+    MODIFY COLUMN tipo_vehiculo ENUM('carro','moto','bicicleta','electrico','camion');</code></pre>
+
+<h4>Paso 3: Agregar tab en registro_entrada.php</h4>
+<pre><code>&lt;button type="button" class="entrada-tab" data-tipo="camion"&gt;
+    &lt;span class="et-icon"&gt;🚚&lt;/span&gt;Camión
+&lt;/button&gt;</code></pre>
+
+<h2>8.5 Agregar regla anti-fraude</h2>
+
+<p>En <code>helpers_anti_fraude.php</code>, dentro de <code>analizar_registro_sospechoso()</code>:</p>
+
+<pre><code>// Regla N: vehículo sospechoso por patrón X
+if (/* condición */) {
+    $razones[] = 'Mensaje de la alerta';
+    $nivel = 'medio'; // bajo, medio, alto
+}</code></pre>
+
+<h2>8.6 Agregar KPI al dashboard admin</h2>
+
+<h4>Paso 1: PHP (arriba del HTML)</h4>
+<pre><code>$stats['nuevo_kpi'] = (int)$pdo->query("
+    SELECT COUNT(*) FROM tabla WHERE empresa_id = $eid
+")->fetchColumn();</code></pre>
+
+<h4>Paso 2: HTML (dentro del grid de KPIs)</h4>
+<pre><code>&lt;div class="kpi-card"&gt;
+    &lt;div class="icon"&gt;🎯&lt;/div&gt;
+    &lt;div class="lbl"&gt;Mi KPI&lt;/div&gt;
+    &lt;div class="val"&gt;&lt;?= $stats['nuevo_kpi'] ?&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h2>8.7 Agregar nueva columna a una tabla</h2>
+
+<h4>Paso 1: SQL</h4>
+<pre><code>ALTER TABLE registros_parqueo 
+    ADD COLUMN nueva_columna VARCHAR(100) DEFAULT NULL;</code></pre>
+
+<h4>Paso 2: Actualizar queries PHP</h4>
+<pre><code>$stmt = $pdo->prepare("
+    UPDATE registros_parqueo 
+    SET nueva_columna = :valor 
+    WHERE id = :id
+");</code></pre>
+
+<h2>8.8 Modificar la lógica de asignación de celdas</h2>
+
+<p>En <code>helpers_entrada.php</code>, función <code>asignar_celda_disponible()</code>:</p>
+
+<pre><code>// Cambiar el ORDER BY para priorizar otra lógica
+$sql .= " ORDER BY codigo_cupo ASC LIMIT 1";
+// ↑ Cambiar a:
+$sql .= " ORDER BY RAND() LIMIT 1"; // celda aleatoria
+// o:
+$sql .= " ORDER BY id DESC LIMIT 1"; // última celda creada</code></pre>
+
+<h2>8.9 Agregar una página nueva al developer</h2>
+
+<h4>Paso 1: Crear el archivo</h4>
+<pre><code>dashboard_developer.php → dev_nueva_pagina.php</code></pre>
+
+<h4>Paso 2: Agregar al hub</h4>
+<p>En <code>dashboard_developer.php</code>, dentro del grid de módulos:</p>
+
+<pre><code>&lt;a href="dev_nueva_pagina.php" class="module-card"&gt;
+    &lt;div class="m-icon"&gt;✦&lt;/div&gt;
+    &lt;h3&gt;Nueva Página&lt;/h3&gt;
+    &lt;p&gt;Descripción de la funcionalidad&lt;/p&gt;
+    &lt;span class="badge-counter"&gt;Nuevo&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+
+<h4>Paso 3: Agregar al nav (JS)</h4>
+<p>En <code>nav_developer.js</code>:</p>
+<pre><code>'&lt;a href="dev_nueva_pagina.php" class="..."&gt;&lt;span class="link-icon"&gt;✦&lt;/span&gt; &lt;span class="link-text"&gt;Nueva&lt;/span&gt;&lt;/a&gt;'</code></pre>
+
+<h2>8.10 Ejecutar queries de diagnóstico</h2>
+
+<h4>Ver qué tablas tienen columna empresa_id</h4>
+<pre><code>& "C:\xampp\php\php.exe" -r "
+require 'conexion.php';
+\$tablas = \$pdo->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN);
+foreach (\$tablas as \$t) {
+    \$c = \$pdo->query(\"SHOW COLUMNS FROM `\$t` LIKE 'empresa_id'\")->fetch();
+    echo (\$c ? '✅' : '❌') . ' ' . \$t . PHP_EOL;
+}
+"</code></pre>
+
+<h4>Contar registros por empresa</h4>
+<pre><code>& "C:\xampp\php\php.exe" -r "
+require 'conexion.php';
+\$r = \$pdo->query('
+    SELECT e.nombre, COUNT(rp.id) AS total
+    FROM empresas e
+    LEFT JOIN registros_parqueo rp ON rp.empresa_id = e.id
+    GROUP BY e.id
+')->fetchAll();
+foreach (\$r as \$x) echo \$x['nombre'] . ': ' . \$x['total'] . PHP_EOL;
+"</code></pre>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 9 ============ -->
+<h1>9. Seguridad del Sistema</h1>
+
+<h2>9.1 Reglas de oro</h2>
+
+<h3>NUNCA ❌</h3>
+<ul style="margin-left: 2rem; line-height: 2;">
+    <li>Subir <code>.env</code> a GitHub</li>
+    <li>Compartir la API key por chat, email o WhatsApp</li>
+    <li>Poner la API key en JavaScript del cliente</li>
+    <li>Hacer commit de <code>vendor/</code> o <code>backups/</code></li>
+    <li>Exponer contraseñas en pantalla o en logs</li>
+    <li>Dejar <code>display_errors=1</code> en producción</li>
+    <li>Confiar en <code>$_GET</code> sin sanitizar</li>
+</ul>
+
+<h3>SIEMPRE ✅</h3>
+<ul style="margin-left: 2rem; line-height: 2;">
+    <li>Verificar <code>.gitignore</code> antes de commitear</li>
+    <li>Usar <code>preparar_para_compartir.php</code> antes de exportar BD</li>
+    <li>Regenerar API key si se filtra</li>
+    <li>Usar contraseñas con mayúsculas + números + símbolos</li>
+    <li>Activar 2FA en Gmail para el SMTP</li>
+    <li>Mantener <code>vendor/</code> fuera de Git (usar <code>composer install</code>)</li>
+    <li>Hacer backups periódicos de la BD</li>
+</ul>
+
+<h2>9.2 Antes de subir a GitHub</h2>
+
+<div class="steps-container">
+<div class="step">
+    <strong>Verificar archivos ignorados</strong>
+    <pre><code>git status --ignored | findstr ".env"
+git status --ignored | findstr "backups"
+git status --ignored | findstr "vendor"</code></pre>
+    <p>Los 3 deben aparecer en la lista.</p>
+</div>
+<div class="step">
+    <strong>Limpiar la BD antes de exportar</strong>
+    <pre><code>php preparar_para_compartir.php</code></pre>
+    <p>Elimina la IA_API_KEY de la BD.</p>
+</div>
+<div class="step">
+    <strong>Exportar la BD sin secrets</strong>
+    <pre><code>mysqldump -u root smartpark > dump_publico.sql
+findstr "IA_API_KEY" dump_publico.sql
+:: Debe estar vacío</code></pre>
+</div>
+<div class="step">
+    <strong>Commit y push</strong>
+    <pre><code>git add .
+git commit -m "Release v3.0"
+git push origin main</code></pre>
+</div>
+</div>
+
+<h2>9.3 Protecciones ya implementadas</h2>
+
+<table>
+    <thead><tr><th>Protección</th><th>Implementación</th></tr></thead>
+    <tbody>
+        <tr><td>.htaccess raíz</td><td>Bloquea <code>.env</code>, <code>vendor/</code>, <code>backups/</code>, <code>config/</code></td></tr>
+        <tr><td>API key cifrada</td><td>AES-256-GCM en tabla <code>configuracion</code></td></tr>
+        <tr><td>CSRF</td><td>Token en todos los formularios POST</td></tr>
+        <tr><td>Rate limiting</td><td>5 intentos/15min en login · 10 preguntas/5min en IA</td></tr>
+        <tr><td>Contraseñas</td><td>Argon2id o Bcrypt cost=12</td></tr>
+        <tr><td>2FA</td><td>OTP de 6 dígitos por email</td></tr>
+        <tr><td>SQL Injection</td><td>PDO con prepared statements</td></tr>
+        <tr><td>XSS</td><td><code>htmlspecialchars()</code> en todos los outputs</td></tr>
+        <tr><td>Path traversal</td><td>Validación con <code>realpath()</code></td></tr>
+        <tr><td>Multi-tenant</td><td>Filtro obligatorio por <code>empresa_id</code></td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 10 ============ -->
+<h1>10. Roadmap y Pendientes</h1>
+
+<h2>10.1 Estado actual del proyecto</h2>
+
+<div class="diagram">████████████████████████████████░░ 92%
+
+✅ COMPLETADO
+   Bloque 1: BD reparada (ENUMs, PK, columnas)
+   Bloque 2: Sistema de entrada inteligente
+   Bloque 3: CSS unificado (20 archivos)
+   Bloque 3.5: admin.php rediseñado
+   Bloque 4: IA Gemini funcionando
+   Bloque 5: Sistema QR completo
+   Bloque 6: IA por roles + widget + reportes</div>
+
+<h2>10.2 Pendientes por bloque</h2>
+
+<h3>🔥 Bloque 7 — Dashboard Vigilante (próximo)</h3>
+<p>Nuevo portal para guardias:</p>
+<ul style="margin-left: 2rem;">
+    <li>Registro ultra-rápido de entrada (solo placa)</li>
+    <li>Verificación de salida con QR</li>
+    <li>Vista simplificada de celdas ocupadas</li>
+    <li>Sin acceso a datos financieros</li>
+    <li>Botón de "Reportar problema"</li>
+</ul>
+
+<h3>🟡 Bloque 8 — Telegram Bot</h3>
+<ul style="margin-left: 2rem;">
+    <li>Configurar token del bot</li>
+    <li>Notificar entradas/salidas al admin</li>
+    <li>Enviar facturas por Telegram</li>
+    <li>Comandos: <code>/estado</code>, <code>/ocupacion</code>, <code>/recaudo</code></li>
+</ul>
+
+<h3>🟡 Bloque 9 — Multi-parqueadero avanzado</h3>
+<ul style="margin-left: 2rem;">
+    <li>Un admin gestiona múltiples sedes</li>
+    <li>Reportes consolidados</li>
+    <li>Comparativas entre sedes</li>
+    <li>Transferencia de celdas entre parqueaderos</li>
+</ul>
+
+<h3>📱 Bloque 10 — Adiciones Web Móvil</h3>
+<ul style="margin-left: 2rem;">
+    <li>PWA instalable (manifest + service worker)</li>
+    <li>Menú hamburguesa responsive</li>
+    <li>Touch gestures (swipe)</li>
+    <li>Notificaciones push</li>
+    <li>Optimización responsive completa</li>
+    <li>Teclado numérico para placas</li>
+    <li>Modo offline básico</li>
+</ul>
+
+<h3>📚 Bloque 11 — Documentación Final</h3>
+<ul style="margin-left: 2rem;">
+    <li>README.md con screenshots</li>
+    <li>Documentación técnica</li>
+    <li>Video de demo (2-3 min)</li>
+    <li>Presentación para sustentación</li>
+    <li>Preparación de defensa oral</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 11 ============ -->
+<h1>11. Recuperación ante Desastres</h1>
+
+<h2>11.1 Restaurar desde backup</h2>
+
+<div class="steps-container">
+<div class="step">
+    <strong>Detener MySQL</strong>
+    <p>Panel de XAMPP → Stop en MySQL</p>
+</div>
+<div class="step">
+    <strong>Localizar el backup</strong>
+    <pre><code>Get-ChildItem backups\*.sql | Sort-Object LastWriteTime -Descending | Select-Object -First 5</code></pre>
+</div>
+<div class="step">
+    <strong>Restaurar en phpMyAdmin</strong>
+    <ol style="margin-left: 1.5rem;">
+        <li>Abrir <code>http://localhost/phpmyadmin</code></li>
+        <li>Seleccionar la base <code>smartpark</code></li>
+        <li>Pestaña <strong>Importar</strong></li>
+        <li>Subir el archivo <code>.sql</code></li>
+        <li>Clic en <strong>Continuar</strong></li>
+    </ol>
+</div>
+<div class="step">
+    <strong>Reiniciar MySQL</strong>
+    <p>Panel de XAMPP → Start en MySQL</p>
+</div>
+</div>
+
+<h2>11.2 Restaurar un archivo PHP modificado</h2>
+
+<p>Hay backups automáticos con extensión <code>.bak</code> o <code>.bak_ia</code>:</p>
+
+<pre><code># Ver backups disponibles
+Get-ChildItem *.bak* | Select-Object Name, LastWriteTime
+
+# Restaurar
+Copy-Item dashboard_admin.php.bak dashboard_admin.php -Force</code></pre>
+
+<h2>11.3 Resetear el sistema (solo desarrollo)</h2>
+
+<div class="danger">
+    <strong>⚠️ CUIDADO:</strong> Esto elimina TODAS las empresas excepto las 2 iniciales (Demo + El Centro). Solo ejecutar en ambiente de pruebas.
+</div>
+
+<pre><code>-- Eliminar empresas adicionales
+DELETE FROM empresas WHERE id &gt; 2;
+
+-- Eliminar registros huérfanos
+DELETE FROM registros_parqueo 
+WHERE empresa_id NOT IN (SELECT id FROM empresas);
+
+-- Eliminar cupos huérfanos
+DELETE FROM cupos 
+WHERE empresa_id NOT IN (SELECT id FROM empresas);
+
+-- Verificar
+SELECT id, nombre FROM empresas;</code></pre>
+
+<h2>11.4 MySQL no arranca</h2>
+
+<p>Si el panel dice "MySQL shutdown unexpectedly":</p>
+
+<pre><code># 1. Matar procesos MySQL
+Stop-Process -Name mysqld -Force -ErrorAction SilentlyContinue
+
+# 2. Ver el error
+Get-Content "C:\xampp\mysql\data\mysql_error.log" -Tail 30
+
+# 3. Si dice "Table corrupted", restaurar tablas del sistema:
+Copy-Item "C:\xampp\mysql\backup\mysql\*" "C:\xampp\mysql\data\mysql\" -Force
+
+# 4. Reintentar arrancar MySQL</code></pre>
+
+<div class="page-break"></div>
+
+<!-- ============ SECCIÓN 12 ============ -->
+<h1>12. Recursos y Contacto</h1>
+
+<h2>12.1 Documentación oficial</h2>
+
+<table>
+    <thead><tr><th>Recurso</th><th>URL</th></tr></thead>
+    <tbody>
+        <tr><td>Gemini API Docs</td><td><code>https://ai.google.dev/gemini-api/docs</code></td></tr>
+        <tr><td>Endroid QR Code</td><td><code>https://github.com/endroid/qr-code</code></td></tr>
+        <tr><td>PHPMailer</td><td><code>https://github.com/PHPMailer/PHPMailer</code></td></tr>
+        <tr><td>Google AI Studio (API keys)</td><td><code>https://aistudio.google.com/app/apikey</code></td></tr>
+        <tr><td>Google Cloud Console</td><td><code>https://console.cloud.google.com</code></td></tr>
+        <tr><td>XAMPP</td><td><code>https://www.apachefriends.org</code></td></tr>
+    </tbody>
+</table>
+
+<h2>12.2 Credenciales críticas — Mantener seguras</h2>
+
+<table>
+    <thead><tr><th>Recurso</th><th>Dónde se guarda</th></tr></thead>
+    <tbody>
+        <tr><td>MySQL root</td><td>Sin password (local XAMPP)</td></tr>
+        <tr><td>Gemini API key</td><td>Tabla <code>configuracion</code> (cifrada)</td></tr>
+        <tr><td>SMTP Gmail</td><td>Tabla <code>configuracion</code></td></tr>
+        <tr><td>APP_CRYPTO_KEY</td><td>Archivo <code>.env</code></td></tr>
+    </tbody>
+</table>
+
+<h2>12.3 Canales de soporte</h2>
+
+<table>
+    <thead><tr><th>Canal</th><th>Uso</th></tr></thead>
+    <tbody>
+        <tr><td>Chat interno del equipo</td><td>Dudas rápidas</td></tr>
+        <tr><td>GitHub Issues</td><td>Reportar bugs</td></tr>
+        <tr><td>Documentación</td><td>Primero consultar el manual</td></tr>
+    </tbody>
+</table>
+
+<h2>12.4 Checklist antes de la sustentación</h2>
+
+<ul class="checklist">
+    <li>Login developer funciona</li>
+    <li>Login empresa funciona</li>
+    <li>Login cliente funciona</li>
+    <li>Sistema QR funciona (probar con celular)</li>
+    <li>IA responde correctamente</li>
+    <li>Anti-fraude detecta placas inválidas</li>
+    <li>Backups funcionan</li>
+    <li>Widget IA visible en todos los dashboards</li>
+    <li>Todos los botones funcionan</li>
+    <li>Documentación lista</li>
+    <li>Video de demo grabado</li>
+    <li>Diapositivas preparadas</li>
+    <li>Ensayo de la presentación</li>
+</ul>
+
+<!-- ============ CIERRE ============ -->
+<div class="footer-print">
+    <strong>SmartPark Pro V3</strong> · Manual del Equipo · Octubre 2026<br>
+    Documento generado automáticamente · Versión 1.0
+</div>
+
+</body>
+</html>

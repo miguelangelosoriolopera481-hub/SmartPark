@@ -1,0 +1,11 @@
+# Dependencias de Composer (se generan con `composer install`)
+/vendor/
+
+# Variables de entorno reales (nunca subir credenciales)
+.env
+
+# Copias de seguridad generadas por el panel admin
+/backups/*.sql
+
+# Archivos de IDE
+.idea/

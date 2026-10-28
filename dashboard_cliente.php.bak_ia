@@ -1,0 +1,95 @@
+﻿<?php
+session_start();
+require_once 'conexion.php';
+require_once 'helpers.php';
+require_once 'csrf.php';
+send_security_headers();
+
+require_login();
+$eid = require_empresa();
+
+$stmt = $pdo->prepare("SELECT * FROM registros_parqueo WHERE empresa_id = :eid AND user_id = :uid ORDER BY id DESC LIMIT 30");
+$stmt->execute(['eid' => $eid, 'uid' => (int)$_SESSION['usuario_id']]);
+$historial = $stmt->fetchAll();
+
+$stmt = $pdo->prepare("SELECT * FROM user_vehiculo WHERE empresa_id = :eid AND user_id = :uid ORDER BY fecha_creacion DESC");
+$stmt->execute(['eid' => $eid, 'uid' => (int)$_SESSION['usuario_id']]);
+$vehiculos = $stmt->fetchAll();
+
+$emp = $pdo->prepare("SELECT nombre FROM empresas WHERE id = :eid");
+$emp->execute(['eid' => $eid]);
+$nombreEmpresa = $emp->fetchColumn() ?: 'Empresa';
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mi Cuenta - <?= htmlspecialchars($nombreEmpresa) ?></title>
+<link rel="stylesheet" href="assets/css/main.css?v=34">
+<link rel="stylesheet" href="assets/css/legacy-compat.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="cyber-body">
+<nav class="cyber-navbar"><div class="nav-container">
+  <a href="dashboard_cliente.php" class="cyber-brand">
+    <img src="IMG/SMARTPARK.png" class="nav-logo">
+    <span class="brand-title"><?= htmlspecialchars($nombreEmpresa) ?></span>
+  </a>
+  <div class="cyber-nav-links">
+    <a href="registro_carro.php" class="cyber-btn-outline">Registrar Vehiculo</a>
+    <a href="mi_parqueadero.php" class="cyber-btn-outline">Mi Parqueadero</a>
+    <a href="logout.php" style="color:var(--danger);text-decoration:none">Salir</a>
+  </div>
+</div></nav>
+
+<div class="container cyber-entrance">
+  <h2 style="color:var(--primary-cyan);margin-bottom:.5rem">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></h2>
+  <p style="color:var(--text-muted);margin-bottom:2rem">Empresa: <?= htmlspecialchars($nombreEmpresa) ?></p>
+
+  <div class="cyber-card" style="margin-bottom:2rem">
+    <h3 style="color:var(--primary-cyan);margin-bottom:1rem">Mis Vehiculos</h3>
+    <?php if (empty($vehiculos)): ?>
+      <p style="color:var(--text-muted)">Aun no tienes vehiculos registrados.</p>
+    <?php else: ?>
+      <div class="table-wrapper"><table>
+        <thead><tr><th>Placa</th><th>Modelo</th><th>Tipo</th><th>Registrado</th></tr></thead>
+        <tbody>
+        <?php foreach ($vehiculos as $v): ?>
+          <tr>
+            <td><span class="plate-style"><?= htmlspecialchars($v['placa']) ?></span></td>
+            <td><?= htmlspecialchars($v['modelo'] ?? '-') ?></td>
+            <td><?= htmlspecialchars($v['tipo_vehiculo']) ?></td>
+            <td><?= htmlspecialchars($v['fecha_creacion']) ?></td>
+          </tr>
+        <?php endforeach; ?>
+        </tbody>
+      </table></div>
+    <?php endif; ?>
+  </div>
+
+  <div class="cyber-card">
+    <h3 style="color:var(--primary-cyan);margin-bottom:1rem">Mi Historial</h3>
+    <?php if (empty($historial)): ?>
+      <p style="color:var(--text-muted)">Sin historial todavia.</p>
+    <?php else: ?>
+      <div class="table-wrapper"><table>
+        <thead><tr><th>Placa</th><th>Celda</th><th>Ingreso</th><th>Salida</th><th>Total</th><th>Estado</th></tr></thead>
+        <tbody>
+        <?php foreach ($historial as $h): ?>
+          <tr>
+            <td><span class="plate-style"><?= htmlspecialchars($h['placa']) ?></span></td>
+            <td><?= htmlspecialchars($h['cupo_asignado']) ?></td>
+            <td><?= htmlspecialchars($h['fecha_ingreso']) ?></td>
+            <td><?= htmlspecialchars($h['fecha_salida'] ?? 'En curso') ?></td>
+            <td>$<?= number_format((float)$h['total_pagar'],0,',','.') ?></td>
+            <td><?= $h['estado'] === 'activo' ? 'Activo' : 'Finalizado' ?></td>
+          </tr>
+        <?php endforeach; ?>
+        </tbody>
+      </table></div>
+    <?php endif; ?>
+  </div>
+</div>
+</body></html>

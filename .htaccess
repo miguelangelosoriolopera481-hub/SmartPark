@@ -1,0 +1,35 @@
+﻿# ============================================================
+# SmartPark Pro - Protección de archivos sensibles
+# ============================================================
+
+# Bloquear acceso a archivos de entorno y config
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
+<FilesMatch "^\.env\.">
+    Require all denied
+</FilesMatch>
+
+# Bloquear composer y lock
+<FilesMatch "^(composer\.(json|lock|phar)|installed\.json)$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear archivos de test y diagnóstico
+<FilesMatch "^(test_|diag_|diag\.php|check_admin\.php|reset_admin\.php|limpiar_intentos\.php|fix_|verificar_|analizar_inconsistencias\.php|aplicar_migracion\.php)">
+    Require all denied
+</FilesMatch>
+
+# Bloquear archivos .log, .sql, .bak
+<FilesMatch "\.(log|sql|bak|old|swp)$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear listado de directorios
+Options -Indexes
+
+# Bloquear acceso a carpetas críticas
+RedirectMatch 404 ^/sistema2/vendor/
+RedirectMatch 404 ^/sistema2/backups/
+RedirectMatch 404 ^/sistema2/config/
+RedirectMatch 404 ^/sistema2/uploads/

@@ -1,0 +1,80 @@
+﻿<?php
+session_start();
+require_once 'conexion.php';
+require_once 'helpers.php';
+require_once 'csrf.php';
+send_security_headers();
+
+require_role_empresa(['admin','superadmin','finanzas']);
+$eid = current_empresa_id();
+
+$stmt = $pdo->prepare("
+    SELECT DATE(fecha_salida) d, SUM(total_pagar) total, COUNT(*) cnt
+    FROM registros_parqueo
+    WHERE empresa_id = :eid AND fecha_salida IS NOT NULL AND fecha_salida >= (NOW() - INTERVAL 30 DAY)
+    GROUP BY DATE(fecha_salida) ORDER BY d DESC
+");
+$stmt->execute(['eid' => $eid]);
+$porDia = $stmt->fetchAll();
+
+$stmt = $pdo->prepare("
+    SELECT metodo_pago, SUM(monto) total, COUNT(*) cnt
+    FROM pagos WHERE empresa_id = :eid AND estado='aprobado' AND creado_en >= (NOW() - INTERVAL 30 DAY)
+    GROUP BY metodo_pago
+");
+$stmt->execute(['eid' => $eid]);
+$porMetodo = $stmt->fetchAll();
+
+$totalMes = array_sum(array_column($porDia, 'total'));
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finanzas - Empresa #<?= (int)$eid ?></title>
+<link rel="stylesheet" href="assets/css/main.css?v=34">
+<link rel="stylesheet" href="assets/css/legacy-compat.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="cyber-body">
+<nav class="cyber-navbar"><div class="nav-container">
+  <a href="dashboard_admin.php" class="cyber-btn-outline">Panel Admin</a>
+  <span style="color:var(--text-muted)">Finanzas - Empresa #<?= (int)$eid ?></span>
+  <a href="logout.php" style="color:var(--danger)">Salir</a>
+</div></nav>
+
+<div class="container cyber-entrance">
+  <h2 style="color:var(--primary-cyan);margin-bottom:1.5rem">Dashboard Financiero</h2>
+
+  <div class="grid-3">
+    <div class="cyber-card"><h4>Total 30 dias</h4>
+      <p style="font-size:2.2rem;color:var(--primary-green)">$<?= number_format($totalMes,0,',','.') ?></p></div>
+    <?php foreach ($porMetodo as $m): ?>
+      <div class="cyber-card"><h4><?= htmlspecialchars(strtoupper($m['metodo_pago'])) ?></h4>
+        <p style="font-size:1.6rem;color:var(--primary-cyan)">$<?= number_format((float)$m['total'],0,',','.') ?></p>
+        <small style="color:var(--text-muted)"><?= (int)$m['cnt'] ?> pagos</small></div>
+    <?php endforeach; ?>
+  </div>
+
+  <div class="cyber-card" style="margin-top:2rem">
+    <h3 style="color:var(--primary-cyan);margin-bottom:1rem">Ingresos por Dia (30 dias)</h3>
+    <div class="table-wrapper"><table>
+      <thead><tr><th>Fecha</th><th>Salidas</th><th>Recaudo</th></tr></thead>
+      <tbody>
+      <?php if (empty($porDia)): ?>
+        <tr><td colspan="3" style="text-align:center;color:var(--text-muted);padding:1rem">Sin datos.</td></tr>
+      <?php else: foreach ($porDia as $r): ?>
+        <tr><td><?= htmlspecialchars($r['d']) ?></td><td><?= (int)$r['cnt'] ?></td>
+            <td><strong style="color:var(--primary-green)">$<?= number_format((float)$r['total'],0,',','.') ?></strong></td></tr>
+      <?php endforeach; endif; ?>
+      </tbody></table></div>
+  </div>
+
+  <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+    <a href="exportar_finanzas.php?formato=csv" class="cyber-btn-outline">Exportar CSV/Excel</a>
+    <a href="exportar_finanzas.php?formato=pdf" class="cyber-btn-outline">Exportar PDF</a>
+  </div>
+</div>
+</body></html>
